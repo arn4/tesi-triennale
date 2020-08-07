@@ -1,0 +1,69 @@
+\documentclass{beamer}
+\usepackage{pack}
+
+\usepackage[utf8]{inputenc}
+
+\usetheme{PaloAlto}
+\usecolortheme{seahorse} %seahorse, beaver
+
+
+%Information to be included in the title page:
+\title[CP doesn't mean Markov.]{\texttt{Inserisci titolo}}
+\subtitle[it]{\texttt{Inserisci sottotitolo}}
+\author[Luca Arnaboldi]{Luca Arnaboldi \\[1ex]
+	{\small Relatore: Vittorio Giovannetti}}      
+\institute[UniPi]{\includegraphics[height=1.45cm]{../img/unipi.png}}
+\date[17-09-2020]{17 settembre 2020}
+\logo{\includegraphics[height=1.45cm]{../img/unipi-noscritta.png}}
+
+\begin{document}
+	
+\frame{\titlepage}
+
+% Slide 1
+\begin{frame}
+	\frametitle[Slide 1]{Slide 1}
+	Ora espongo un teomrema d'esempio \pause
+	\begin{block}{Teorema}
+		Uomo! Guarda che \(1+1 \not= 6\)
+	\end{block}
+\end{frame}
+
+% Slide 2
+\begin{frame}
+\frametitle[Slide 2]{Slide 2}
+Il mio libro prefrito è \cite{nielsen2010quantum}.
+\end{frame}
+
+% Slide 3
+\begin{frame}
+\frametitle[Slide 3]{Slide 3}
+Il mio articolo preferito invece è \cite{CPdoesnotimply}
+\end{frame}
+
+% Slide 4
+\section{Slides 4}
+\begin{frame}
+\frametitle{Slide 4}
+\begin{equation}
+\ket{\psi} = \frac{\ket{0}+\ket{1}}{\sqrt{2}}
+\end{equation}
+\end{frame}
+
+% Slide 5
+\begin{frame}
+\frametitle[Slide 5]{Slide 5}
+\end{frame}
+
+% Slide Finale
+\begin{frame}
+
+\centerline{\huge Grazie per l'attenzione!}
+
+\vfill
+\textbf{\structure{Bibliografia}}
+\printbibliography
+
+\end{frame}
+
+\end{document}
