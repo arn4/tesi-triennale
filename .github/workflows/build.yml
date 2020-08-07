@@ -13,7 +13,7 @@ jobs:
       - name: Move compiled files
         run: |
           mkdir outputs/
-          mv appunti/appunti.pdf outputs/appunti.pdf
+          mv appunti.pdf outputs/appunti.pdf
       - name: Save artifacts
         uses: actions/upload-artifact@v2
         with:
