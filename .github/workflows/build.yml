@@ -1,0 +1,21 @@
+name: Build LaTeX documents
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX documents
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: appunti/main.tex
+      - name: Move compiled files
+        run: |
+          mkdir outputs/
+          mv appunti/main.pdf outputs/appunti.pdf
+      - name: Save artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: compiled-documents
+          path: outputs/

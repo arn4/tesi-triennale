@@ -1,0 +1,185 @@
+\documentclass[a4]{article}
+\usepackage{pack}
+
+\geometry{
+	twocolumn,
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+\title{Note e riflessioni per la tesi}
+\author{Luca Arnaboldi}
+
+\begin{document}
+\maketitle
+\tableofcontents
+Il setting è quello degli \emph{open quantum systems}. In particolare vogliamo studiare
+la markovianità dell'evoluzione temporale, spesso chiamata \emph{divisibilità}, anche se
+le due definizioni non coincidono. Lo scopo della tesi è indigare le differenze tra questi
+due concetti. Il lavoro si basa sul contenuto dell'articolo \emph{Complete Positive
+Divisibilitydoes not mean Markovianity} di Modi~et.~al.\cite{CPdoesnotimply}.
+
+\section{Notazione}
+Descriveremo un sistema \(S\), a contatto con un ambiente \(E\); i rispettivi spazi di
+Hilbert sono \(\Hilb_S\) e \(\Hilb_E\), supposti tutti di dimensione finita. Lo spazio
+su cui si lavora è dunque 
+\(\Hilb_{SE} = \Hilb_{SE} \otimes \Hilb_{SE}\), e la più generica Hamiltoniana si
+scriverà come
+\[\hat{H}_{SE} = \hat{H}_S \otimes  \Id_E + \Id_S \otimes  \hat{H}_E + \hat{V}_{SE}.\]
+
+L'insieme degli operatori lineari di \(\Hilb\) è \(\LinSet(\Hilb)\), mentre quello delle
+matrici densità è \(\sigma(\Hilb)\); ovviamente \(\LinSet(\Hilb) \subset \sigma(\Hilb)\).
+Indicheremo con \(\hat{\rho}_S\) e \(\hat{\tau}_E\) due generiche matrici densità di \(S\)
+e \(E\) rispettivamente; la matrice di densità completa è invece indicata da \(\hat{\rho}_{SE}\).
+Ovviamente tutte dipendendono dal tempo.
+
+
+Indicheremo con \(\Phi_{t'\to t}(\cdot)\) la mappa che evolve che manda \(\hat{\rho}_S(t')\)
+in \(\hat{\rho}_S(t)\). Se omettiamo \(t'\) significa che sottointendiamo che parte da \(t'=0\).
+Per brevità, a volte indicheremo \(\Phi_{t'\to t}\) con \(\Phi_{t:t'}\) (attenzione il verso è scambiato!). Infine se la mappa \(\Phi\) è accessibile sperimentalmente verrà indicata con
+\(\Lambda\).
+
+\section{Definizion \& fatti utili: ripasso}
+Qui metto un po' di cose ``scolastiche'', cioè prese dai corsi di \texttt{MQ} o \texttt{QINFO}
+che però ci tengo a ripassare per la tesi.
+\subsection{Misure \& POVM}
+Ho preso tutto dal Nielsen \cite{nielsen2010quantum}.
+
+Il postulato di misura della meccanica quantistica (\emph{misure proiettive}) è particolarmente
+restrittivo. Ad esempio non contempla casi in cui la misura è irripetibile: se ripeto una
+seconda volta una misura proiettiva non perturbo nuovamete il sistema ed ottengo lo stesso
+risultato. Chiaramente però questo tipo di misura non può ovviamente descrivere il caso in
+cui, ad esempio, ho misurato un fotone distuggendolo.
+\begin{post}[di misura]
+Le misure in meccanica quantistica sono descritte da un insieme di operatori
+\(\{\hat{M}_m\}\), tali che rispettano l'equazione di completezza
+\begin{equation} \label{eq:compmis}
+\sum_m \hat{M}^\dag_m \hat{M}_m = \Id
+\end{equation}
+e l'indice \(m\) si riferisce al risultato della misura.
+
+Se il sistema si trova nello stato \(\ket{\psi}\) prima della misura, si troverà successivamente
+nello stato
+\[ \frac{\hat{M}_m \ket{\psi}}{\sqrt{\Braket{\psi|\hat{M}^\dag_m \hat{M}_m|\psi}}}\]
+con probabilità \(p(m)= \braket{\psi|\hat{M}^\dag_m \hat{M}_m|\psi}\).
+\end{post}
+L'equazione \eqref{eq:compmis} discende dalla richiesta che le probabilità sommino a 1:
+\(\sum_m~p(m)~=~1\).
+
+I POVM sono utili quando non siamo interessati allo stato del sistema dopo la misura.
+\begin{defn}[POVM]
+Un \emph{POVM} è un insieme di operatori \emph{positivi} \(\{\hat{E}_m\}\) tali che
+\[\sum_m \hat{E}_m  = \Id.\]
+\end{defn}
+È una buona definizone perchè scegliendo \(\hat{M}_m = \sqrt{\hat{E}_m}\) otteniamo una
+misura valida per il postulato di misura. I POVM forniscono infomazioni \emph{solo sulla
+probabilità di misura} e non sullo stato risultante siccome comunque scegliendo
+\[\hat{M}_m = \hat{U}\sqrt{\hat{E}_m},\]
+dove \(\hat{U}\) è una qualsiasi unitaria, si ottiene una misura con la stessa statistica
+del POVM, ma che ovviamente non ha lo stesso stato finale. Questa ambiguità
+rende i POVM inutilizzabili nei casi in cui è necessario conoscere lo stato.
+
+Una misura proiettiva si ottiene scegliendo come come operatori di misura
+i poiettori. Analogamente la descrizione POVM di una misura poiettiva è
+\[\hat{E}_m = \ket{m}\bra{m}.\]
+
+Per concludere, la probabilità di ottenere il risultato \(m\) da una misura su
+una matrice di densità è
+\[p(m) = \Tr[\hat{E}_m \hat{\rho}]\]
+
+
+
+\subsection{Open Quantum Systems}
+Per le note proprietà delle matrici di densità vale 
+\[\hat{\rho}_S(t) = \Tr_E\left(\hat{\rho}_{SE}(t)\right).\]
+Ovviamente il sistema congiunto \(S-E\) evolve come un sistema chiuso, quindi attraverso un
+operatore unitario \(\hat{U}_{SE}(t, t')\):
+\[\hat{\rho}_{SE}(t) = \hat{U}_{SE}(t, t') \hat{\rho}_{SE}(t') \hat{U}^{\dag}_{SE}(t, t'),\]
+ma lo stesso non vale per il sistema \(S\) da solo. Infatti lui non è chiuso, dato che interagisce
+con l'ambiente; \(S\) è apputno detto \emph{open quantum system}.
+
+\begin{defn}[Completamente Positivo] Una mappa \(\Phi\colon \sigma(\Hilb) \to \sigma(\Hilb) \)
+si dice \emph{completamente postiva} se dato un qualsiasi sistema \(A\), la mappa
+\[\Phi \otimes \Id_A: \sigma(\Hilb \otimes \Hilb_A) \to \sigma(\Hilb \otimes \Hilb_A) \]
+è positiva.
+\end{defn}
+
+\(\Phi_{t'\to t}(\cdot)\) è lineare, completamente positiva e conserva la traccia,
+più brevemente  diremo \emph{LCPT}. CP è vero nel caso in cui lo stato iniziale di
+S-E è fattorizzabile (vedi tipo \cite{breuer2007theory} per i dettagli).
+
+\begin{defn}[Divisibilità completamente positiva] Un sistema è \emph{CP-divisibile} se la sua
+mappa \(\Phi\) è tale che
+\begin{equation} \label{eq:CPdiv}
+\Phi_{t'\to t} = \Phi_{s\to t} \circ \Phi_{t'\to s} \quad \forall t, t', s: t' \le s \le t.
+\end{equation}
+\end{defn}
+Al corso di \texttt{QINFO2} abbiamo detto che 
+\[\text{markoviano quantistico} \iff \text{CP-divisibile}, \]
+e che un criterio sufficiente è che la distanza traccia sia decrescente. Queste cose in realtà
+sono entrambe false \cite{markovcondition}, e quindi c'è del lavoro da fare.
+
+\section{Inquadriamo il problema}
+La definizione classica di processo markoviano è ben nota (vedi tipo \cite{breuer2007theory, markovcondition}).
+Il problema se condideriamo processi quantistici è che, nonstante sia matematicamente
+ben definita, \emph{operativamente} è inutilizzabile: non posso infatti verificare
+la markovianità (che è una condizione ad  ogni tempo) senza perturbare il sistema
+quando misuro. In ultima analisi quindi  la definizione classica di markovianità
+\textbf{non} è utilizzabile nel linguaggio quantistico.
+La gente ha fatto diversi tentativi per risolvere il problema, ma quasi tutti seguono
+il pattern: prendo una condizione necessaria, \emph{ma non sufficiente} alla markovianità
+classica, e la estendo facendola diventare una condizione quantistica. La CP-divisibilità
+è uno di questi tentativi: ho preso l'equazione di Chapman-Kolmogorov (che è in un certo
+senso la proprietà più importante dei processi markoviani), e l'ho trasformata in una
+codizione  quantistica.
+È stata  trovata una buona definizione di markovianità quantistica, che concide con
+quella classica per il limite giusto, è tutto esposto nel \cite{markovcondition}.
+
+Il problema è dunque capire come si inquadra in questo  contesto la completa positività.
+I problemi sono molteplici: l'attuale definizione di CP-positività non si presta alla
+verifica in laboratorio  (nel senso  che manca una definizione precisa su che tomografia
+quantistica effettuare per verificare la completà positività), dovremo dunque occuparci
+di formularla in una definizione operativa.
+Infine vedremo come metterla in relazione con la markovianità quantistica.
+
+\section{Contenuto}
+Esponiamo innanzi tutto due defiizioi non equivalenti della \emph{CP-sivisibilità}.
+
+\paragraph{ICP divisibilità}
+Siamo in un contesto sperimentale dove possiamo preparare un sistema in un qualsiasi
+stato iniziale al tempo \(r=0\), e poi effetuare misure a qualsiasi tempo \(s>0\).
+Con la tomografia  quantistica  possiamo costruire  l'insieme
+\[  \lambda_0 = \{\Lambda_{s\colon0}\}, \]
+delle mappe che descrivono la dinamica. Supponiamo che \textbf{tutte le mappe di \(\boldmath{\lambda_0}\) siano invertibili.}
+\begin{defn}[ICP divisibilità]
+Un processo è \emph{CP-divisibile per inversione} se, dati \(s \le  t\), la mappa
+\[\Phi_{t\colon s} = \Lambda_{t\colon0} \circ \Lambda^{-1}_{s\colon0}\]
+è completamente positiva.
+\end{defn}
+Ovviamente se un processo è ICPdiv allora ogni mappa \(\Phi_{t\colon s}\) è ben definita
+a partire da \(\lambda_0\).
+
+\paragraph{OCP divisibilità}
+Supponiamo invece che di poter manipolare il sistema a qualsiasi tempo \(s\). In
+particolare possiamo interrompere l'evoluzione ad un istante \(s_-\), effettuare una
+misura, e sostituire lo stato con una qualsiasi altra matrice di densità in modo che
+l'evoluzione continui dall'istante \(s_+\). In questa situazione è  possibile  ricostruire
+sperimentalmente tutte le mappe dell'insieme
+\[\lambda = \{\Lambda_{t\colon s}\}  \quad \forall s,t\colon s \le t.\]  
+\begin{defn}[OCP  divisibilità]
+Un processo è \emph{CP-divisibile operativamente} se dati \(r \le s \le  t\), vale la
+relazione 
+\begin{equation} \label{eq:OCPdiv}
+\Lambda_{t\colon r} = \Lambda_{t\colon s} \circ \Lambda_{s\colon r},
+\end{equation}
+dove le mappe appartengono tutte all'insieme \(\lambda\).
+\end{defn}
+Le equazioni \eqref{eq:CPdiv} e \eqref{eq:OCPdiv} sono formalmente identiche, con la differenza che nella seconda è chiaro come verificarla operativamente.
+
+
+
+\printbibliography
+
+
+\end{document}
