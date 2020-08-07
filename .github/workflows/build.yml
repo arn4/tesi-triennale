@@ -9,11 +9,11 @@ jobs:
       - name: Compile LaTeX documents
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: appunti/main.tex
+          root_file: appunti/appunti.tex
       - name: Move compiled files
         run: |
           mkdir outputs/
-          mv appunti/main.pdf outputs/appunti.pdf
+          mv appunti/appunti.pdf outputs/appunti.pdf
       - name: Save artifacts
         uses: actions/upload-artifact@v2
         with:
