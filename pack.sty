@@ -1,11 +1,15 @@
 \usepackage[italian]{babel}
+
 \usepackage{geometry}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{bbm}
 \usepackage{mathrsfs}
+\usepackage{centernot} % Serve per fare il not al centro delle frecce
 
 \usepackage{braket}
 
@@ -23,7 +27,9 @@
 \theoremstyle{plain}
 \newtheorem{thm}{Teorema} % reset theorem numbering for each chapter
 \newtheorem{post}{Postulato} % reset theorem numbering for each chapter
+\newtheorem{lem}{Lemma}
 
 \theoremstyle{definition}
 \newtheorem{defn}{Definizione} % definition numbers are dependent on theorem numbers
 \newtheorem{exmp}{Esempio} % same for example numbers
+\newtheorem*{ach}{Attenzione!}

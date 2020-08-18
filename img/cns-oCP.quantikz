@@ -1,0 +1,11 @@
+% Figura per il controesempio: conditional non-signalling =/=> oCP
+
+\begin{quantikz}
+	\lstick[wires=2]{\(\hat{\eta}_{\mathcal{E}_s \mathcal{E}_r}\)} \slice{r}
+	  & \qw \slice{s}        & \gate[wires=3]{\hat{U}} \slice{t} & \qw & \\
+	%
+	  & \gate[swap]          & \qw                               & \qw & \qw \rstick[wires=1]{\(\hat{\rho}^{(r)}\)} \\
+	%
+	\lstick[wires=1]{\(\hat{\rho}^{(r)}\)}
+	  &                      &                         & \qw &
+\end{quantikz}

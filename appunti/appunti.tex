@@ -1,5 +1,6 @@
 \documentclass[a4]{article}
 \usepackage{pack}
+\usepackage{todonotes}
 
 \geometry{
 	twocolumn,
@@ -14,6 +15,7 @@
 \begin{document}
 \maketitle
 \tableofcontents
+\vspace{6pt}
 Il setting è quello degli \emph{open quantum systems}. In particolare vogliamo studiare
 la markovianità dell'evoluzione temporale, spesso chiamata \emph{divisibilità}, anche se
 le due definizioni non coincidono. Lo scopo della tesi è indigare le differenze tra questi
@@ -83,7 +85,7 @@ rende i POVM inutilizzabili nei casi in cui è necessario conoscere lo stato.
 
 Una misura proiettiva si ottiene scegliendo come come operatori di misura
 i poiettori. Analogamente la descrizione POVM di una misura poiettiva è
-\[\hat{E}_m = \ket{m}\bra{m}.\]
+\[\hat{E}_m = \ket{m}\!\bra{m}.\]
 
 Per concludere, la probabilità di ottenere il risultato \(m\) da una misura su
 una matrice di densità è
@@ -145,30 +147,31 @@ di formularla in una definizione operativa.
 Infine vedremo come metterla in relazione con la markovianità quantistica.
 
 \section{Contenuto}
-Esponiamo innanzi tutto due defiizioi non equivalenti della \emph{CP-sivisibilità}.
+Esponiamo innanzi tutto due definizioi non equivalenti della \emph{CP-divisibilità}.
 
-\paragraph{ICP divisibilità}
+\subsection{iCP divisibilità}
 Siamo in un contesto sperimentale dove possiamo preparare un sistema in un qualsiasi
 stato iniziale al tempo \(r=0\), e poi effetuare misure a qualsiasi tempo \(s>0\).
 Con la tomografia  quantistica  possiamo costruire  l'insieme
 \[  \lambda_0 = \{\Lambda_{s\colon0}\}, \]
-delle mappe che descrivono la dinamica. Supponiamo che \textbf{tutte le mappe di \(\boldmath{\lambda_0}\) siano invertibili.}
-\begin{defn}[ICP divisibilità]
+delle mappe che descrivono la dinamica. Supponiamo che \textbf{tutte le mappe di
+\(\boldmath{\lambda_0}\) siano invertibili.}
+\begin{defn}[iCP divisibilità]
 Un processo è \emph{CP-divisibile per inversione} se, dati \(s \le  t\), la mappa
 \[\Phi_{t\colon s} = \Lambda_{t\colon0} \circ \Lambda^{-1}_{s\colon0}\]
 è completamente positiva.
 \end{defn}
-Ovviamente se un processo è ICPdiv allora ogni mappa \(\Phi_{t\colon s}\) è ben definita
+Ovviamente se un processo è iCPdiv allora ogni mappa \(\Phi_{t\colon s}\) è ben definita
 a partire da \(\lambda_0\).
 
-\paragraph{OCP divisibilità}
+\subsection{oCP divisibilità}
 Supponiamo invece che di poter manipolare il sistema a qualsiasi tempo \(s\). In
 particolare possiamo interrompere l'evoluzione ad un istante \(s_-\), effettuare una
 misura, e sostituire lo stato con una qualsiasi altra matrice di densità in modo che
 l'evoluzione continui dall'istante \(s_+\). In questa situazione è  possibile  ricostruire
 sperimentalmente tutte le mappe dell'insieme
 \[\lambda = \{\Lambda_{t\colon s}\}  \quad \forall s,t\colon s \le t.\]  
-\begin{defn}[OCP  divisibilità]
+\begin{defn}[oCP  divisibilità]
 Un processo è \emph{CP-divisibile operativamente} se dati \(r \le s \le  t\), vale la
 relazione 
 \begin{equation} \label{eq:OCPdiv}
@@ -179,9 +182,59 @@ dove le mappe appartengono tutte all'insieme \(\lambda\).
 Le equazioni \eqref{eq:CPdiv} e \eqref{eq:OCPdiv} sono formalmente identiche, con la
 differenza che nella seconda è chiaro come verificarla operativamente.
 
+\paragraph{Conditional non-signalling}
+La definizione di oCP divisibilità è ancora ambigua, dato che la mappa \(\Lambda_{t\colon s}\)
+potrebbe a priori dipendere da \(\hat{\rho}^{(r)}\), ovvero lo stato iniziale del sistema.
+In effetti questo non può succedere, come mostriamo nel lemma seguente.
+\begin{lem}
+	Siano \(r<s<t\) tre istanti temporali. L'\emph{oCP divisibilità} implica che non ci
+	sia \emph{signalling} tra \(r\) e \(t\), \emph{condizionato} al fatto che all'istante
+	\(s_-\) lo stato del sistema \(S\) è scartato e preparato in uno nuovo all'istante \(s_+\).
+	\proof Basta dire che se così non fosse la oCP divisibilità non sarebbe una buona
+	definizione. 
+	
+	Più formalmente si può osservare che se non valesse il \emph{conditional non-signalling}
+	allora la mappa \(\Lambda_{t\colon s}\) non potrebbe essere CP. 
+	\todo{Spiega meglio! Ci sono un po di cose da dire}
+\end{lem}
+\begin{ach}
+	Non vale il vicevarsa, ovvero esitono processi \emph{conditionally non-signalling}, ma
+	che non sono oCP divisibili. Un esempio è si trova nel paragrafo \ref{cont:cnsocp}.
+\end{ach}
 
+
+
+
+\section{Controesempi}
+\subsection[Cond. non-signalling does not imply oCP]
+           {Conditionally non-signalling\(\centernot\implies\)oCP} \label{cont:cnsocp}
+\begin{figure}
+	\centering
+	\input{img/cns-oCP.quantikz}
+	\caption{circuito che mostra la non equivalenza del \emph{conditional non-signalling}
+		con la condizione \emph{oCP}.}
+	\label{fig:cnsNocp}
+\end{figure}
+Il circuito è rappresentato in Figura \ref{fig:cnsNocp}.
+
+
+\subsection[iCP non è equivalente a oCP]
+           {iCP \(\centernot=\) oCP} \label{cont:icpocp}
+
+\subsection[oCP non è equivalente a Markoviano]
+           {oCP \(\centernot=\) Markov} \label{cont:ocpmar}
+
+
+
+\section{Domande senza risposta}
+Qui metto tutte le domande che mi sono venute leggendo gli articoli, ma la cui risposta
+non è contenuta in essi. Magari semplicemente perchè la rispoasta è talmente
+banale che non serviva scriverla.
+\paragraph{iCP + cond. non-sign.\(\implies\)oCP?} Ci devo pensare, ma così ad intuito
+direi di no, però devo pensarci per bene.
 
 \printbibliography
+
 
 
 \end{document}
