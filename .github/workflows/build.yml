@@ -12,7 +12,7 @@ jobs:
           pip install -r script/requirements.txt
       - name: Test oCP =/= cond. non-signalling
         run: |
-          python script/cond_non-dign__oCP.py
+          python script/cond_non-sign__oCP.py
   build_latex:
     runs-on: ubuntu-latest
     steps:
