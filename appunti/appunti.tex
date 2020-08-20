@@ -1,13 +1,15 @@
 \documentclass[a4]{article}
 \usepackage{pack}
+% Pacchetti specifici per gli appunti
 \usepackage{todonotes}
+\usepackage{parskip} % Evita che ci sia un rientro nei nuovi paragrafi
 
 \geometry{
-	twocolumn,
+	%twocolumn,
 	a4paper,
 	total={170mm,257mm},
-	left=20mm,
-	top=20mm,
+	left=30mm,
+	right=30mm,
 }
 \title{Note e riflessioni per la tesi}
 \author{Luca Arnaboldi}
@@ -93,7 +95,7 @@ una matrice di densità è
 
 
 
-\subsection{Open Quantum Systems}
+\subsection{Open Quantum Systems: cose generali}
 Per le note proprietà delle matrici di densità vale 
 \[\hat{\rho}_S(t) = \Tr_E\left(\hat{\rho}_{SE}(t)\right).\]
 Ovviamente il sistema congiunto \(S-E\) evolve come un sistema chiuso, quindi attraverso un
@@ -122,6 +124,12 @@ Al corso di \texttt{QINFO2} abbiamo detto che
 \[\text{markoviano quantistico} \iff \text{CP-divisibile}, \]
 e che un criterio sufficiente è che la distanza traccia sia decrescente. Queste cose in realtà
 sono entrambe false \cite{markovcondition}, e quindi c'è del lavoro da fare.
+
+\subsection{Isomorfismo di Choi–Jamiołkowski}
+\begin{defn}[Stato di Choi]
+Consideriamo un canale quantistico \(\Phi: \LinSet(\Hilb_a) \to \LinSet(\Hilb_b)\).
+Sia \( \{\ket{i}\}_{i=1,\dots,d} \) una base ortonormale di \(\Hilb_a\).
+\end{defn}
 
 \section{Inquadriamo il problema}
 La definizione classica di processo markoviano è ben nota (vedi tipo \cite{breuer2007theory, markovcondition}).
@@ -208,6 +216,27 @@ In effetti questo non può succedere, come mostriamo nel lemma seguente.
 \section{Controesempi}
 \subsection[Cond. non-signalling does not imply oCP]
            {Conditionally non-signalling\(\centernot\implies\)oCP} \label{cont:cnsocp}
+Consideriamo un sistema dove l'ambiente è costituito da due quibit: \(\mathcal{E}_s\) e
+\(\mathcal{E}_r\). Il sistema d'interesse \(\mathcal{S}\) è anch'esso un qubit.
+Nell'istante iniziale \(r\) l'ambiente si trova nello stato
+\[\hat{\eta}_{\mathcal{E}_s\mathcal{E}_r} =
+  \frac{1}{4}\left(\Id_{\mathcal{E}_s\mathcal{E}_r} +
+                    \SigmaZ_{\mathcal{E}_s} \otimes \SigmaX_{\mathcal{E}_r}
+             \right). \]
+Indicheremo con \(\hat{\rho}^{(r)}\) lo stato in cui è preparato il sistema al tempo \(r\).
+Siamo interessati all'evoluzione in due istanti differenti \(r<s<t\).
+
+L'evoluìone temporale è descritta da
+\begin{align*}
+	\hat{U}_{\mathcal{S}\mathcal{E}_s\mathcal{E}_r}(r \to s) &= 
+	  \hat{S}_{\mathcal{S}\mathcal{E}_r} \otimes \Id_{\mathcal{E}_s} \\
+	\hat{U}_{\mathcal{S}\mathcal{E}_s\mathcal{E}_r}(s \to t) &=
+	  \hat{U} = \frac{1}{\sqrt{3}}\left(\Id_{\mathcal{S}\mathcal{E}_s} +
+	    	                            i \SigmaY_{\mathcal{S}} \otimes \Id_{\mathcal{E}_s} +
+	    	                            i \SigmaY_{\mathcal{S}} \otimes \SigmaZ_{\mathcal{E}_s}
+	    	                      \right) \otimes \Id_{\mathcal{E}_r},    	    	                              
+\end{align*}
+dove \(\hat{S}\) è l'operatore SWAP.
 \begin{figure}
 	\centering
 	\input{img/cns-oCP.quantikz}
@@ -215,8 +244,41 @@ In effetti questo non può succedere, come mostriamo nel lemma seguente.
 		con la condizione \emph{oCP}.}
 	\label{fig:cnsNocp}
 \end{figure}
-Il circuito è rappresentato in Figura \ref{fig:cnsNocp}.
+Il circuito è rappresetato in Figura \ref{fig:cnsNocp}.
 
+Il superoperatore da \(r\) a \(t\) è descritto da 
+\[\Lambda_{t\colon r} \left[\hat{\rho}^{(r)}\right] =
+    \Tr\left[\hat{\rho}^{(r)}\right] \hat{\tau} \]
+con \(\hat{\tau} = \frac{1}{2}\Id_\mathcal{S} + \frac{1}{3}\SigmaY_\mathcal{S}\).
+Il superoperatore da \(r\) a \(s\) invece è 
+\[\Lambda_{s\colon r} \left[\hat{\rho}^{(r)}\right] =
+    \Tr\left[\hat{\rho}^{(r)}\right] \frac{\Id_\mathcal{S}}{2}. \]
+    
+Consideriamo ora il caso in cui interrompiamo l'evoluzione all'istante \(s_-\), e poi
+prepariamo il sistema \(\mathcal{S}\) nello stato \(\hat{\rho}^{(s)}\). Nel momento
+dell'interruzione l'ambiente risulta essere nello stato
+\[\hat{\eta}_{\mathcal{E}_s\mathcal{E}_r} =
+      \frac{\Id_{\mathcal{E}_s}\otimes\hat{\rho}^{(r)}_{\mathcal{E}_r}}{2}.\]
+Se fissiamo \(\bm{v} = (a,b,c)\) un vettore della Sfera di Bloch, e prepariamo lo
+stato 
+\[\hat{\rho}^{(s)} =
+     \frac{1}{2} \left( \Id_\mathcal{S} + \bm{\sigma}_\mathcal{S} \cdot \bm{v} \right),\]
+allora il superoperatore da \(s\) a \(t\) è 
+\[\Lambda_{s\colon r} \left[\hat{\rho}^{(s)}\right] =
+     \frac{1}{2} \left( \Id_\mathcal{S} + \bm{\sigma}_\mathcal{S} \cdot \bm{w} \right),\]
+con \(\bm{w} = \frac{1}{3} (a-2c, b, 2a-c)\). Il processo è chiaramente conditional
+non-signalling, dato che non c'è informazione di \(\hat{\rho}^{(r)}\) nella mappa
+\(\Lambda_{s\colon r}\), ma 
+\[\Lambda_{t\colon r} \not= \Lambda_{t\colon s} \circ \Lambda_{s\colon r}.\]
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Attenzione!]
+	Nel paper \cite{CPdoesnotimply} si dice che 
+	\(\bm{w} = (\frac{a-2b}{3}, b, \frac{2a-c}{3})\). Secondo me è sbagliato: 
+	ad esempio se \(\bm{v} = (0,1,0)\) allora \(\bm{w}\) non sarebbe nella
+	sfera di Bloch.
+	
+	Quello che ho scritto è quanto viene a me, ho fatto verificato
+	il conto anche con Python.
+\end{tcolorbox}
 
 \subsection[iCP non è equivalente a oCP]
            {iCP \(\centernot=\) oCP} \label{cont:icpocp}
@@ -225,15 +287,21 @@ Il circuito è rappresentato in Figura \ref{fig:cnsNocp}.
            {oCP \(\centernot=\) Markov} \label{cont:ocpmar}
 
 
-
 \section{Domande senza risposta}
 Qui metto tutte le domande che mi sono venute leggendo gli articoli, ma la cui risposta
 non è contenuta in essi. Magari semplicemente perchè la rispoasta è talmente
 banale che non serviva scriverla.
-\paragraph{iCP + cond. non-sign.\(\implies\)oCP?} Ci devo pensare, ma così ad intuito
-direi di no, però devo pensarci per bene.
+\paragraph{iCP + cond. non-sign.\(\implies\)oCP?} 
 
 \printbibliography
+
+% Ecco un bell'orso
+\begin{flushright}
+	\begin{tikzpicture}
+	\bear
+	\end{tikzpicture}
+\end{flushright}
+	
 
 
 

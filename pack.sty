@@ -1,17 +1,25 @@
 \usepackage[italian]{babel}
 
+% LaTeX
 \usepackage{geometry}
 \usepackage{tikz}
 \usetikzlibrary{quantikz}
+\usepackage{tcolorbox} % fare i box colorati
 
+% Math
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{bbm}
 \usepackage{mathrsfs}
 \usepackage{centernot} % Serve per fare il not al centro delle frecce
+\usepackage{bm} % vettori bold
 
+% Physics
 \usepackage{braket}
+
+% Fun
+\usepackage{tikzlings}
 
 % Bibliografia
 \usepackage[backend=biber,doi=false,isbn=false,url=false]{biblatex}
@@ -33,3 +41,8 @@
 \newtheorem{defn}{Definizione} % definition numbers are dependent on theorem numbers
 \newtheorem{exmp}{Esempio} % same for example numbers
 \newtheorem*{ach}{Attenzione!}
+
+%Shortcut
+\newcommand{\SigmaX}{\hat{\sigma}^{(x)}}
+\newcommand{\SigmaY}{\hat{\sigma}^{(y)}}
+\newcommand{\SigmaZ}{\hat{\sigma}^{(z)}}
