@@ -25,12 +25,6 @@
 \usepackage[backend=biber,doi=false,isbn=false,url=false]{biblatex}
 \addbibresource{bibliografia.bib}
 
-\newcommand{\Hilb}{\mathcal{H}}
-\newcommand{\Id}{\hat{\mathcal{I}}}
-\newcommand{\LinSet}{\mathscr{L}}
-
-\DeclareMathOperator{\Tr}{tr}
-
 % Comandi per i teoremi, definizioni ed esmpi
 \theoremstyle{plain}
 \newtheorem{thm}{Teorema} % reset theorem numbering for each chapter
@@ -42,7 +36,14 @@
 \newtheorem{exmp}{Esempio} % same for example numbers
 \newtheorem*{ach}{Attenzione!}
 
-%Shortcut
+% Shortcut
 \newcommand{\SigmaX}{\hat{\sigma}^{(x)}}
 \newcommand{\SigmaY}{\hat{\sigma}^{(y)}}
 \newcommand{\SigmaZ}{\hat{\sigma}^{(z)}}
+
+\newcommand{\Hilb}{\mathcal{H}}
+\newcommand{\Id}{\hat{\mathcal{I}}}
+\newcommand{\LinSet}{\mathscr{L}}
+\newcommand{\ChoiState}[1]{\hat{\rho}_\text{CJ}^{#1}}
+
+\DeclareMathOperator{\Tr}{tr}

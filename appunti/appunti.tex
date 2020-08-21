@@ -126,10 +126,42 @@ e che un criterio sufficiente è che la distanza traccia sia decrescente. Queste
 sono entrambe false \cite{markovcondition}, e quindi c'è del lavoro da fare.
 
 \subsection{Isomorfismo di Choi–Jamiołkowski}
-\begin{defn}[Stato di Choi]
-Consideriamo un canale quantistico \(\Phi: \LinSet(\Hilb_a) \to \LinSet(\Hilb_b)\).
-Sia \( \{\ket{i}\}_{i=1,\dots,d} \) una base ortonormale di \(\Hilb_a\).
+Consideriamo un canale quantistico \(\Phi: \LinSet(\Hilb_\mathcal{S}) \to
+\LinSet(\Hilb_\mathcal{S'})\). Di solito (tipo a \texttt{QINFO2}) si considera un canale di
+un sistema in sè stesso, ma dato che nell'articolo lo definiamo così, allora facciamo tra
+due spazi diversi.
+\begin{defn}[Stato di Choi–Jamiołkowski di \(\Phi\)]
+Sia \(\mathcal{A}\) un sistema ausilaiario (\emph{ancilla}) della stessa dimensione di
+\(\mathcal{S}\). Siano \( \left\{\ket{i}_\mathcal{S}\right\}_{i=1,\dots,d} \)  e
+\(\left\{\ket{i}_\mathcal{A}\right\}_{i=1,\dots,d}\) basi ortonormali di \(\Hilb_\mathcal{S}\) e
+\(\Hilb_\mathcal{A}\) rispettivamente. Si dice \emph{stato di Choi–Jamiołkowski di \(\Phi\)}
+\[\ChoiState{\Phi} := \left( \Phi \otimes \Id_\mathcal{A}\right) 
+  \left(\sum_{i=1}^d \frac{\ket{i}_\mathcal{S} \ket{i}_\mathcal{A} \bra{i}_\mathcal{S}
+  \bra{i}_\mathcal{A}}{\sqrt{d}}\right) \in \sigma(\Hilb_\mathcal{S'} \otimes \Hilb_\mathcal{A}).\]
 \end{defn}
+Facciamo ora qualche osservazione. La definizione \emph{non è indipendente dalle basi} scelte:
+per scelte diverse degli stai \(\ket{i}\) si ottengono stati diversi. In secondo luogo a priori
+non è per nulla chiaro che \(\ChoiState{\Phi}\) sia effettivamente una buona matrice 
+di densità. Sappiamo solo che è un operatore positivo dato che \(\Phi\) è CP. Si dimostra però
+(vedi sul quaderno di \texttt{QINFO2}) che
+\[\Phi\text{ LCP} \quad \implies \ChoiState{\Phi} \in \sigma(\Hilb_\mathcal{S'}
+\otimes \Hilb_\mathcal{A}).\]
+Inoltre le peculiarità non finiscono qui, dato che vale il seguennte teorema.
+\begin{thm}[di Choi sulle mappe CP] \label{thm:choi}
+L'operatore \(\ChoiState{\Phi}\) è semidefinito positivo se e solo se \(\Phi\) è una mappa
+completamente postiva.
+\end{thm}
+Da notare che questo fornisce un ottimo criterio per verificare la positività completa di
+una mappa.
+
+Notiamo infine che nonè un ismorfismo nel senso che ci aspettiamo: non è vero che ad ogni
+elemento di \(\sigma(\Hilb_\mathcal{S'}\otimes \Hilb_\mathcal{A})\) corrisponde una mappa
+LCPT. Infatti vale il criterio
+\[\Phi\text{ LCPT} \iff \Tr_\mathcal{S}\left[\ChoiState{\Phi}\right]=\frac{\Id_{\mathcal{A}}}{d}.\]
+L'isomorfismo vale nel senso del Teorema~\ref{thm:choi}: ad ogni mappa CP corrisponde
+(a meno della normalizzazione) una matrice densità. 
+
+
 
 \section{Inquadriamo il problema}
 La definizione classica di processo markoviano è ben nota (vedi tipo \cite{breuer2007theory, markovcondition}).
@@ -146,9 +178,9 @@ senso la proprietà più importante dei processi markoviani), e l'ho trasformata
 codizione  quantistica.
 È stata  trovata una buona definizione di markovianità quantistica, che concide con
 quella classica per il limite giusto, è tutto esposto nel \cite{markovcondition}.
-
 Il problema è dunque capire come si inquadra in questo  contesto la completa positività.
-I problemi sono molteplici: l'attuale definizione di CP-positività non si presta alla
+
+I problemi però non finiscono qui: l'attuale definizione di CP-positività non si presta alla
 verifica in laboratorio  (nel senso  che manca una definizione precisa su che tomografia
 quantistica effettuare per verificare la completà positività), dovremo dunque occuparci
 di formularla in una definizione operativa.
@@ -209,6 +241,8 @@ In effetti questo non può succedere, come mostriamo nel lemma seguente.
 	Non vale il vicevarsa, ovvero esitono processi \emph{conditionally non-signalling}, ma
 	che non sono oCP divisibili. Un esempio è si trova nel paragrafo \ref{cont:cnsocp}.
 \end{ach}
+
+\subsection{Relazioni tra le classi di divisibilità}
 
 
 
@@ -292,6 +326,7 @@ Qui metto tutte le domande che mi sono venute leggendo gli articoli, ma la cui r
 non è contenuta in essi. Magari semplicemente perchè la rispoasta è talmente
 banale che non serviva scriverla.
 \paragraph{iCP + cond. non-sign.\(\implies\)oCP?} 
+Non riesco proprio a darmi una risposta...
 
 \printbibliography
 
