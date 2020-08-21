@@ -41,3 +41,27 @@ jobs:
         with:
           name: compiled-documents
           path: outputs/
+
+  send_to_server:
+    needs: build_latex
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: compiled-documents
+          path: .
+      - name: Install SSH & tools
+        run: |
+          apt-get install -y sshpass
+          apt-get install -y ssh
+      - name: Upload artifacts
+        env:
+          SSHUSER: ${{ secrets.SSHUSER }}
+          SSHSERVER: ${{ secrets.SSHSERVER }}
+          SSHPATH: ${{ secrets.SSHPATH }}
+          SSHPASS: ${{ secrets.SSHPASS }}
+        run: |
+          sshpass -e scp -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no appunti.pdf $SSHUSER@$SSHSERVER:$SSHPATH
+          sshpass -e scp -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no presentazione-handout.pdf $SSHUSER@$SSHSERVER:$SSHPATH
+          sshpass -e scp -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no presentazione.pdf $SSHUSER@$SSHSERVER:$SSHPATH
