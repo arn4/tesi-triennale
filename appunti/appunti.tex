@@ -45,7 +45,7 @@ Per brevità, a volte indicheremo \(\Phi_{t'\to t}\) con \(\Phi_{t:t'}\) (attenz
 Infine se la mappa \(\Phi\) è accessibile sperimentalmente verrà indicata con
 \(\Lambda\).
 
-\section{Definizion \& fatti utili: ripasso}
+\section{Ripasso}
 Qui metto un po' di cose ``scolastiche'', cioè prese dai corsi di \texttt{MQ} o \texttt{QINFO}
 che però ci tengo a ripassare per la tesi.
 \subsection{Misure \& POVM}
@@ -225,29 +225,61 @@ differenza che nella seconda è chiaro come verificarla operativamente.
 \paragraph{Conditional non-signalling}
 La definizione di oCP divisibilità è ancora ambigua, dato che la mappa \(\Lambda_{t\colon s}\)
 potrebbe a priori dipendere da \(\hat{\rho}^{(r)}\), ovvero lo stato iniziale del sistema.
-In effetti questo non può succedere, come mostriamo nel lemma seguente.
-\begin{lem}
+In effetti questo non può succedere, come mostriamo nel Lemma~\ref{lem:condnsig}.
+\begin{lem}  \label{lem:condnsig}
 	Siano \(r<s<t\) tre istanti temporali. L'\emph{oCP divisibilità} implica che non ci
 	sia \emph{signalling} tra \(r\) e \(t\), \emph{condizionato} al fatto che all'istante
 	\(s_-\) lo stato del sistema \(S\) è scartato e preparato in uno nuovo all'istante \(s_+\).
+	
 	\proof Basta dire che se così non fosse la oCP divisibilità non sarebbe una buona
 	definizione. 
 	
 	Più formalmente si può osservare che se non valesse il \emph{conditional non-signalling}
 	allora la mappa \(\Lambda_{t\colon s}\) non potrebbe essere CP. 
-	\todo{Spiega meglio! Ci sono un po di cose da dire}
+	Supponiamo per assurdo che la dinamica sia conditionally signalling. Allora esiste
+	uno stato \(\hat{\rho}_s\) nel quale possiamo preparare il sistema al tempo \(s\)
+	tale che lo stato finale al tempo \(t\) dipende dalla scelta iniziale dello stato
+	 \(\hat{\rho}_r\). Se così fosse la mappa \(\Lambda_{t\colon s}\) non potrebbe essere
+	 CP dato che per lo stesso input \(\hat{\rho}_s\) dovrebbe avere output diversi, e ciò
+	 è impossibile per le mappe CP.
+	 \todo{Ma non dovrebbe essere impossibile per le funzioni in genelare? Chiedi a Giovannetti}
 \end{lem}
 \begin{ach}
 	Non vale il vicevarsa, ovvero esitono processi \emph{conditionally non-signalling}, ma
 	che non sono oCP divisibili. Un esempio è si trova nel paragrafo \ref{cont:cnsocp}.
 \end{ach}
 
+\subsubsection{Conditional signalling formalmente}
+Nell'Appendice~A dell'articolo~\cite{CPdoesnotimply} c'è una definizione formale di
+\emph{non-signalling} e \emph{conditional non-signalling} in termini di POVM e preparazioni
+tomograficamente complete. Non la trascivo perchè è già chiaro da là.
+
 \subsection{Relazioni tra le classi di divisibilità}
 Come specificato in precedenza l'iCP divisibilità ha senso fin tanto che le mappe in gioco
-sono invertibili. Ristretti a questo caso è baanle vedere che oCP~\(\implies\)~iCP, basta 
+sono invertibili. Ristretti a questo caso è banale vedere che oCP~\(\implies\)~iCP, basta 
 moltiplicare a desta per l'inverso di \(\Lambda_{s\colon r}\) e si ottiene l'iCP divisibilità.
 Si potrebbe pensare che vale il viceversa, ma nella sezione~\ref{cont:icpocp} si mostra
 un processo iCP, ma che è allo stesso tempo conditional signalling.
+
+L'oCP divisinilità non è comunque sufficiente ad eliminare tutti gli effetti di memoria
+dell'ambiente: esistono infatti processi che sono oCP divisibili, ma non markoviani.
+Si veda il controesempio~\ref{cont:ocpmar} per un esempio esplicito.
+L'oCP divisinilità però corrisponde a quella che può essere chiamata \emph{markovianità
+i media}, cioè lo stato finale dipende solo dall'ultima preparazione a patto di mediare
+su tutte le misure passate.
+
+%% Per fare davvero l'esempio dovrei spiegare tutta la roba di come trasformare il processo
+%% in una statistica classica quando misuro. Probabilmente non ne ho voglia perchè è fatto
+%% bene sull'articolo.
+
+%Per essere più espliciti consideriamo come al solito un processo che inizia al tempo
+%\(r\), viene misurato al tempo \(s_-\), preparato nuovamente ad \(s_+\) ed infine misurato
+%defitivamente al tempo \(t\); indichiamo con \(\hat{\rho}^{(s_-)}\) e \(\hat{\rho}^{(t)}\)
+%gli stati misurati al tempo \(s_-\) e \(t\) rispettivamente e con \(\hat{\rho}^{(r)}\) e
+%\(\hat{\rho}^{(s_+)}\) l'ensemble statistico degli stati misurati ai tempi \(r\) e
+%\(t\) rispettivamente.
+Un processo è markoviano invece quando lo stato finale dipende solo dall'ultima trasformazione
+\emph{per ogni} sequenza di misure precedenti.
 
 
 
@@ -323,10 +355,11 @@ non-signalling, dato che non c'è informazione di \(\hat{\rho}^{(r)}\) nella map
 
 \subsection[iCP non è equivalente a oCP]
            {iCP \(\centernot=\) oCP} \label{cont:icpocp}
+Vedi direttamente \cite{CPdoesnotimply}.
 
 \subsection[oCP non è equivalente a Markoviano]
            {oCP \(\centernot=\) Markov} \label{cont:ocpmar}
-
+Vedi direttamente \cite{CPdoesnotimply}.
 
 \section{Domande senza risposta}
 Qui metto tutte le domande che mi sono venute leggendo gli articoli, ma la cui risposta
