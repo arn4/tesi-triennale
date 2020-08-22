@@ -1,0 +1,7 @@
+\begin{tikzpicture}
+  \bear[graduate=black,tassel=blue]
+  \bearwear[shirt=white,
+		    body deco={\node at (beartummy)
+		    	         {\includegraphics[width=13.5pt]{img/unipi-noscritta.png}};}
+           ]
+\end{tikzpicture}
