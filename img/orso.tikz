@@ -1,7 +1,7 @@
 \begin{tikzpicture}
-  \bear[graduate=black,tassel=blue]
-  \bearwear[shirt=white,
+  \bear[graduate=black,tassel=tasselred]
+  \bearwear[shirt=bluunipi,
 		    body deco={\node at (beartummy)
-		    	         {\includegraphics[width=13.5pt]{img/unipi-noscritta.png}};}
+		    	         {\includegraphics[width=13.5pt]{img/unipi-noscritta-bianca.png}};}
            ]
 \end{tikzpicture}
