@@ -21,7 +21,7 @@
 \vspace{6pt}
 Il setting è quello degli \emph{open quantum systems}. In particolare vogliamo studiare
 la markovianità dell'evoluzione temporale, spesso chiamata \emph{divisibilità}, anche se
-le due definizioni non coincidono. Lo scopo della tesi è indigare le differenze tra questi
+le due definizioni non coincidono. Lo scopo della tesi è indagare le differenze tra questi
 due concetti. Il lavoro si basa sul contenuto dell'articolo \emph{Complete Positive
 Divisibility does not mean Markovianity} di Modi~et.~al.\cite{CPdoesnotimply}.
 
@@ -78,7 +78,7 @@ I POVM sono utili quando non siamo interessati allo stato del sistema dopo la mi
 Un \emph{POVM} è un insieme di operatori \emph{positivi} \(\{\hat{E}_m\}\) tali che
 \[\sum_m \hat{E}_m  = \Id.\]
 \end{defn}
-È una buona definizone perchè scegliendo \(\hat{M}_m = \sqrt{\hat{E}_m}\) otteniamo una
+È una buona definizione perché scegliendo \(\hat{M}_m = \sqrt{\hat{E}_m}\) otteniamo una
 misura valida per il postulato di misura. I POVM forniscono infomazioni \emph{solo sulla
 probabilità di misura} e non sullo stato risultante siccome comunque scegliendo
 \[\hat{M}_m = \hat{U}\sqrt{\hat{E}_m},\]
@@ -103,10 +103,10 @@ Ovviamente il sistema congiunto \(S-E\) evolve come un sistema chiuso, quindi at
 operatore unitario \(\hat{U}_{SE}(t, t')\):
 \[\hat{\rho}_{SE}(t) = \hat{U}_{SE}(t, t') \hat{\rho}_{SE}(t') \hat{U}^{\dag}_{SE}(t, t'),\]
 ma lo stesso non vale per il sistema \(S\) da solo. Infatti lui non è chiuso, dato che interagisce
-con l'ambiente; \(S\) è apputno detto \emph{open quantum system}.
+con l'ambiente; \(S\) è appunto detto \emph{open quantum system}.
 
 \begin{defn}[Completamente Positivo] Una mappa \(\Phi\colon \sigma(\Hilb) \to \sigma(\Hilb) \)
-si dice \emph{completamente postiva} se dato un qualsiasi sistema \(A\), la mappa
+si dice \emph{completamente positiva} se dato un qualsiasi sistema \(A\), la mappa
 \[\Phi \otimes \Id_A: \sigma(\Hilb \otimes \Hilb_A) \to \sigma(\Hilb \otimes \Hilb_A) \]
 è positiva.
 \end{defn}
@@ -132,7 +132,7 @@ Consideriamo un canale quantistico \(\Phi: \LinSet(\Hilb_\mathcal{S}) \to
 un sistema in sè stesso, ma dato che nell'articolo lo definiamo così, allora facciamo tra
 due spazi diversi.
 \begin{defn}[Stato di Choi–Jamiołkowski di \(\Phi\)]
-Sia \(\mathcal{A}\) un sistema ausilaiario (\emph{ancilla}) della stessa dimensione di
+Sia \(\mathcal{A}\) un sistema ausiliario (\emph{ancilla}) della stessa dimensione di
 \(\mathcal{S}\). Siano \( \left\{\ket{i}_\mathcal{S}\right\}_{i=1,\dots,d} \)  e
 \(\left\{\ket{i}_\mathcal{A}\right\}_{i=1,\dots,d}\) basi ortonormali di \(\Hilb_\mathcal{S}\) e
 \(\Hilb_\mathcal{A}\) rispettivamente. Si dice \emph{stato di Choi–Jamiołkowski di \(\Phi\)}
@@ -147,15 +147,15 @@ di densità. Sappiamo solo che è un operatore positivo dato che \(\Phi\) è CP.
 (vedi sul quaderno di \texttt{QINFO2}) che
 \[\Phi\text{ LCP} \quad \implies \ChoiState{\Phi} \in \sigma(\Hilb_\mathcal{S'}
 \otimes \Hilb_\mathcal{A}).\]
-Inoltre le peculiarità non finiscono qui, dato che vale il seguennte teorema.
+Inoltre le peculiarità non finiscono qui, dato che vale il seguente teorema.
 \begin{thm}[di Choi sulle mappe CP] \label{thm:choi}
-L'operatore \(\ChoiState{\Phi}\) è semidefinito positivo se e solo se \(\Phi\) è una mappa
+L'operatore \(\ChoiState{\Phi}\) è semi-definito positivo se e solo se \(\Phi\) è una mappa
 completamente postiva.
 \end{thm}
 Da notare che questo fornisce un ottimo criterio per verificare la positività completa di
 una mappa.
 
-Notiamo infine che nonè un ismorfismo nel senso che ci aspettiamo: non è vero che ad ogni
+Notiamo infine che non è un isomorfismo nel senso che ci aspettiamo: non è vero che ad ogni
 elemento di \(\sigma(\Hilb_\mathcal{S'}\otimes \Hilb_\mathcal{A})\) corrisponde una mappa
 LCPT. Infatti vale il criterio
 \[\Phi\text{ LCPT} \iff \Tr_\mathcal{S}\left[\ChoiState{\Phi}\right]=\frac{\Id_{\mathcal{A}}}{d}.\]
@@ -166,7 +166,7 @@ L'isomorfismo vale nel senso del Teorema~\ref{thm:choi}: ad ogni mappa CP corris
 
 \section{Inquadriamo il problema}
 La definizione classica di processo markoviano è ben nota (vedi tipo \cite{breuer2007theory, markovcondition}).
-Il problema se condideriamo processi quantistici è che, nonstante sia matematicamente
+Il problema se consideriamo processi quantistici è che, nonostante sia matematicamente
 ben definita, \emph{operativamente} è inutilizzabile: non posso infatti verificare
 la markovianità (che è una condizione ad  ogni tempo) senza perturbare il sistema
 quando misuro. In ultima analisi quindi  la definizione classica di markovianità
@@ -176,23 +176,23 @@ il pattern: prendo una condizione necessaria, \emph{ma non sufficiente} alla mar
 classica, e la estendo facendola diventare una condizione quantistica. La CP-divisibilità
 è uno di questi tentativi: ho preso l'equazione di Chapman-Kolmogorov (che è in un certo
 senso la proprietà più importante dei processi markoviani), e l'ho trasformata in una
-codizione  quantistica.
+condizione  quantistica.
 È stata  trovata una buona definizione di markovianità quantistica, che concide con
 quella classica per il limite giusto, è tutto esposto nel \cite{markovcondition}.
 Il problema è dunque capire come si inquadra in questo  contesto la completa positività.
 
 I problemi però non finiscono qui: l'attuale definizione di CP-positività non si presta alla
 verifica in laboratorio  (nel senso  che manca una definizione precisa su che tomografia
-quantistica effettuare per verificare la completà positività), dovremo dunque occuparci
+quantistica effettuare per verificare la completa positività), dovremo dunque occuparci
 di formularla in una definizione operativa.
 Infine vedremo come metterla in relazione con la markovianità quantistica.
 
 \section{Contenuto}
-Esponiamo innanzi tutto due definizioi non equivalenti della \emph{CP-divisibilità}.
+Esponiamo innanzi tutto due definizioni non equivalenti della \emph{CP-divisibilità}.
 
 \subsection{iCP divisibilità}
 Siamo in un contesto sperimentale dove possiamo preparare un sistema in un qualsiasi
-stato iniziale al tempo \(r=0\), e poi effetuare misure a qualsiasi tempo \(s>0\).
+stato iniziale al tempo \(r=0\), e poi effettuare misure a qualsiasi tempo \(s>0\).
 Con la tomografia  quantistica  possiamo costruire  l'insieme
 \[  \lambda_0 = \{\Lambda_{s\colon0}\}, \]
 delle mappe che descrivono la dinamica. Supponiamo che \textbf{tutte le mappe di
@@ -202,7 +202,7 @@ Un processo è \emph{CP-divisibile per inversione} se, dati \(s \le  t\), la map
 \[\Phi_{t\colon s} = \Lambda_{t\colon0} \circ \Lambda^{-1}_{s\colon0}\]
 è completamente positiva.
 \end{defn}
-Ovviamente se un processo è iCPdiv allora ogni mappa \(\Phi_{t\colon s}\) è ben definita
+Ovviamente se un processo è iCP divisibile allora ogni mappa \(\Phi_{t\colon s}\) è ben definita
 a partire da \(\lambda_0\).
 
 \subsection{oCP divisibilità}
@@ -246,14 +246,14 @@ In effetti questo non può succedere, come mostriamo nel Lemma~\ref{lem:condnsig
 	 \todo{Ma non dovrebbe essere impossibile per le funzioni in genelare? Chiedi a Giovannetti}
 \end{lem}
 \begin{ach}
-	Non vale il vicevarsa, ovvero esitono processi \emph{conditionally non-signalling}, ma
+	Non vale il viceversa, ovvero esistono processi \emph{conditionally non-signalling}, ma
 	che non sono oCP divisibili. Un esempio è si trova nel paragrafo \ref{cont:cnsocp}.
 \end{ach}
 
 \subsubsection{Conditional signalling formalmente}
 Nell'Appendice~A dell'articolo~\cite{CPdoesnotimply} c'è una definizione formale di
 \emph{non-signalling} e \emph{conditional non-signalling} in termini di POVM e preparazioni
-tomograficamente complete. Non la trascivo perchè è già chiaro da là.
+tomograficamente complete. Non la trascrivo perché è già chiaro da là.
 
 \subsection{Relazioni tra le classi di divisibilità}
 Come specificato in precedenza l'iCP divisibilità ha senso fin tanto che le mappe in gioco
@@ -262,10 +262,10 @@ moltiplicare a desta per l'inverso di \(\Lambda_{s\colon r}\) e si ottiene l'iCP
 Si potrebbe pensare che vale il viceversa, ma nella sezione~\ref{cont:icpocp} si mostra
 un processo iCP, ma che è allo stesso tempo conditional signalling.
 
-L'oCP divisinilità non è comunque sufficiente ad eliminare tutti gli effetti di memoria
+L'oCP divisibilità non è comunque sufficiente ad eliminare tutti gli effetti di memoria
 dell'ambiente: esistono infatti processi che sono oCP divisibili, ma non markoviani.
 Si veda il controesempio~\ref{cont:ocpmar} per un esempio esplicito.
-L'oCP divisinilità però corrisponde a quella che può essere chiamata \emph{markovianità
+L'oCP divisibilità però corrisponde a quella che può essere chiamata \emph{markovianità
 i media}, cioè lo stato finale dipende solo dall'ultima preparazione a patto di mediare
 su tutte le misure passate.
 
@@ -318,7 +318,7 @@ dove \(\hat{S}\) è l'operatore SWAP.
 		con la condizione \emph{oCP}.}
 	\label{fig:cnsNocp}
 \end{figure}
-Il circuito è rappresetato in Figura \ref{fig:cnsNocp}.
+Il circuito è rappresentato in Figura \ref{fig:cnsNocp}.
 
 Il superoperatore da \(r\) a \(t\) è descritto da 
 \[\Lambda_{t\colon r} \left[\hat{\rho}^{(r)}\right] =
@@ -364,7 +364,7 @@ Vedi direttamente \cite{CPdoesnotimply}.
 
 \section{Domande senza risposta}
 Qui metto tutte le domande che mi sono venute leggendo gli articoli, ma la cui risposta
-non è contenuta in essi. Magari semplicemente perchè la rispoasta è talmente
+non è contenuta in essi. Magari semplicemente perché la risposta è talmente
 banale che non serviva scriverla.
 \paragraph{iCP + cond. non-sign.\(\implies\)oCP?} 
 Non riesco proprio a darmi una risposta...
@@ -374,7 +374,7 @@ Non riesco proprio a darmi una risposta...
 % Ecco un bell'orso
 \section{Extra: un orso}
 Non sarebbe una bella presentazione se non ci fosse almeno un easter-egg. Ho scelto
-di mettere un'orso abbigliato adegautamente per l'occasione.
+di mettere un'orso abbigliato adeguatamente per l'occasione.
 \begin{figure}[h!]
 	\centering
 	\resizebox{0.9\textwidth}{!}{\input{img/orso.tikz}}
