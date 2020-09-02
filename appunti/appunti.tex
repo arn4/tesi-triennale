@@ -22,8 +22,8 @@
 Il setting è quello degli \emph{open quantum systems}. In particolare vogliamo studiare
 la markovianità dell'evoluzione temporale, spesso chiamata \emph{divisibilità}, anche se
 le due definizioni non coincidono. Lo scopo della tesi è indagare le differenze tra questi
-due concetti. Il lavoro si basa sul contenuto dell'articolo \emph{Complete Positive
-Divisibility does not mean Markovianity} di Modi~et.~al.\cite{CPdoesnotimply}.
+due concetti. Il lavoro si basa sul contenuto degli articoli \emph{Complete Positive
+Divisibility does not mean Markovianity} di Modi~et~al \cite{CPdoesnotimply}, e \emph{Quantum non-Markovian processes break conditional past-future independence} di Budini \cite{budini2018quantum}.
 
 \section{Notazione}
 Descriveremo un sistema \(S\), a contatto con un ambiente \(E\); i rispettivi spazi di
@@ -37,7 +37,7 @@ L'insieme degli operatori lineari di \(\Hilb\) è \(\LinSet(\Hilb)\), mentre que
 matrici densità è \(\sigma(\Hilb)\); ovviamente \(\LinSet(\Hilb) \subset \sigma(\Hilb)\).
 Indicheremo con \(\hat{\rho}_S\) e \(\hat{\tau}_E\) due generiche matrici densità di \(S\)
 e \(E\) rispettivamente; la matrice di densità completa è invece indicata da \(\hat{\rho}_{SE}\).
-Ovviamente tutte dipendendono dal tempo.
+Ovviamente tutte dipendono dal tempo.
 
 
 Indicheremo con \(\Phi_{t'\to t}(\cdot)\) la mappa che evolve che manda \(\hat{\rho}_S(t')\)
@@ -121,10 +121,6 @@ mappa \(\Phi\) è tale che
 \Phi_{t'\to t} = \Phi_{s\to t} \circ \Phi_{t'\to s} \quad \forall t, t', s: t' \le s \le t.
 \end{equation}
 \end{defn}
-Al corso di \texttt{QINFO2} abbiamo detto che 
-\[\text{markoviano quantistico} \iff \text{CP-divisibile}, \]
-e che un criterio sufficiente è che la distanza traccia sia decrescente. Queste cose in realtà
-sono entrambe false \cite{markovcondition}, e quindi c'è del lavoro da fare.
 
 \subsection{Isomorfismo di Choi–Jamiołkowski}
 Consideriamo un canale quantistico \(\Phi: \LinSet(\Hilb_\mathcal{S}) \to
@@ -160,7 +156,76 @@ elemento di \(\sigma(\Hilb_\mathcal{S'}\otimes \Hilb_\mathcal{A})\) corrisponde 
 LCPT. Infatti vale il criterio
 \[\Phi\text{ LCPT} \iff \Tr_\mathcal{S}\left[\ChoiState{\Phi}\right]=\frac{\Id_{\mathcal{A}}}{d}.\]
 L'isomorfismo vale nel senso del Teorema~\ref{thm:choi}: ad ogni mappa CP corrisponde
-(a meno della normalizzazione) una matrice densità. 
+(a meno della normalizzazione) una matrice densità.
+
+\subsection{Master equation}
+\begin{defn}[Semigruppo dinamico quantistico]
+	Un canale quantistico si dice essere un semigruppo dinamico se è CP-divisibile
+	ed omogeneo nel tempo, cioè
+	\[\Phi_{t'\to t} \equiv \Phi_{t'- t}.\]
+	Si può dunque scrivere
+	\[\Phi_{t} \circ \Phi_{s} = \Phi_{t+s}.\]
+\end{defn}
+A lungo si è considerato questa la definizione di markovianità per un sistema quantistico
+aperto, o almeno una condizione sufficiente; il corso di \texttt{QINFO 2} diceva proprio questo, ma è l'obbiettivo di questo lavoro dimostrare che non è così.
+
+Vale il seguente teorema
+\begin{thm}[GKSL\footnote{Gorini–Kossakowski–Sudarshan–Lindblad, almeno una volta
+		                  andava scritto.}] \label{thm:GKSL}
+	Un sistema quantistico forma un semi-gruppo dinamico se e solo se vale
+	\[\dot{\rho}_S(t)=\mathcal{L}\left(\rho_S(t)\right),\]
+	con \(\mathcal{L}\) detto \emph{lindbladiano} della forma
+	\[\mathcal{L}\left[\hat{\theta}\right] 
+	  = -i\left[\hat{H},\hat{\theta}\right]+
+	    \sum_k \left(\left[\hat{L}_k\hat{\theta},\hat{L}^\dag_k\right]+
+	                 \left[\hat{L}_k,\hat{\theta}\hat{L}^\dag_k\right] \right).\]
+	\(\hat{H}\) è hermitiano, mentre \(\left\{\hat{L}_k\right\}\) è detto insieme
+	degli operatori di Lindeblad.
+\end{thm}
+Un processo però può essere CP divisibile, ma non essere omogeneo.
+Nel riferimento~\cite{breuer2016colloquium} si dice che un processo continua a essere
+CP divisibile se il limbladiano è della forma
+\[\mathcal{L}(t)\left[\hat{\theta}\right] 
+= -i\left[\hat{H},\hat{\theta}\right]+
+\sum_k \gamma_i(t) \left(\left[\hat{L}_k\hat{\theta},\hat{L}^\dag_k\right]+
+\left[\hat{L}_k,\hat{\theta}\hat{L}^\dag_k\right] \right)
+\quad \text{con} \quad \gamma_i(t) \ge 0 \quad \forall i, \forall t.\]
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!85!black,title=Nota]
+	Non sono riuscito a capire se questa è una condizione sufficiente. Nell'articolo
+	\cite{breuer2016colloquium} in particolare non si capisce se si possono avere anche
+	dipendenze temporali su gli \(\left\{\hat{L}_k\right\}\) e \(\hat{H}\). Secondo me
+	su quest'ultimo sì, mentre su gli altri no, ma non sono sicuro.
+	
+	Quella che ho scritto io è sicuramente una condizione sufficiente, è confermato anche
+	da \cite{budini2018quantum} nel primo esempio.
+\end{tcolorbox}
+
+\subsection{Markovianità classica}
+Consideriamo solo processi discreti, tanto le misure di sistemi quantistici le possiamo 
+fare solo a  tempi distinti. Baso le definizione sul Norris~\cite{norris1998markov}, che
+può essere consultato  per saperne di più.
+
+Indicheremo con \(\{X_n\}\) le variabili casuali di un processo. Intuitivamente un processo
+è markoviano  quando lo step successivo dipende solo dalla storia precedente, e non da
+tutta la storia passata 
+\begin{defn}[Processo Markoviano] \label{defn:classicalmarkov}
+Diremo che \(\{X_n\}\) è  un processo markoviano con distribuzione iniziale \(\lambda\) se
+\[\mathbb{P}\left(X_{n+1} = a_{n+1} | X_{n} = a_{n}, \dots, X_0 = a_0\right) =
+  \mathbb{P}\left(X_{n+1} = a_{n+1} | X_{n} = a_{n}\right)=P^{(n)}_{a_na_{n+1}} \quad \forall n\in \mathbb{N}.\] 
+Diremo per brevità  che il processo è \(\text{Markov}(\lambda,P)\).
+\end{defn}
+Si è sottolineata la dipendenza di \(P\) da \(n\), nel senso che un processo resta markoviano
+anche se le probabilità di transizione cambiano nel tempo. Se invece non succede allora il
+processo si dice anche \emph{omogeneo}.
+
+Esponiamo ora un importante risultato  che permette di dare una definizione equivalente di processo markoviano.
+\begin{thm} \label{thm:markovalt}
+Un processo è \(\text{Markov}(\lambda,P)\) se e solo se 
+\[\mathbb{P}\left(X_0 = a_0, X_1 = a_1, \dots, X_n = a_n\right) =
+  \lambda_0 P^{(0)}_{a_0a_1} P^{(1)}_{a_1a_2} \cdots P^{(n-1)}_{a_{n-1}a_n}
+  \quad \forall n\in \mathbb{N}.\]
+\end{thm}
+
 
 
 
@@ -177,7 +242,7 @@ classica, e la estendo facendola diventare una condizione quantistica. La CP-div
 è uno di questi tentativi: ho preso l'equazione di Chapman-Kolmogorov (che è in un certo
 senso la proprietà più importante dei processi markoviani), e l'ho trasformata in una
 condizione  quantistica.
-È stata  trovata una buona definizione di markovianità quantistica, che concide con
+È stata  trovata una buona definizione di markovianità quantistica, che coincide con
 quella classica per il limite giusto, è tutto esposto nel \cite{markovcondition}.
 Il problema è dunque capire come si inquadra in questo  contesto la completa positività.
 
@@ -187,7 +252,48 @@ quantistica effettuare per verificare la completa positività), dovremo dunque o
 di formularla in una definizione operativa.
 Infine vedremo come metterla in relazione con la markovianità quantistica.
 
-\section{Contenuto}
+\section{Markovianità quantistica}
+Espongo in questa sezione due definizioni della markovianità quantistica differenti,
+proposte da diversi autori.
+\subsection{Causal break \textit{di Modi} \cite{markovcondition}}
+La definizione è riportata nell'articolo \cite{markovcondition} e non la trascrivo qui
+perché non ne ho voglia. Essa discende dalla definizione~\ref{defn:classicalmarkov},
+che viene recuperata nel limite classico.
+\subsection{Past-future correlations \textit{di Budini} \cite{budini2018quantum}}
+La definizione discende dalla definizione classica equivalente data dal
+Teorema~\ref{thm:markovalt}. Infatti usando quest'ultimo si può dire
+\begin{align*}
+	\mathbb{P}(X_{n-1}=a_{n-1}, X_{n+1}=a_{n+1}|X_{n}=a_{n})&=
+    \frac{\mathbb{P}(X_{n-1}=a_{n-1}, X_{n}=a_{n}, X_{n+1}=a_{n+1})}{\mathbb{P}(X_{n}=a_{n})}=\\
+  &=\frac{\mathbb{P}(X_{n-1}=a_{n-1}, X_{n}=a_{n}) P^{(n)}_{a_n a_{n+1}}}
+  {\mathbb{P}(X_{n}=a_{n})}=\\
+  &=\frac{\mathbb{P}(X_{n-1}=a_{n-1}, X_{n}=a_{n}) \mathbb{P}(X_{n+1}=a_{n+1}|X_{n}=a_{n})}
+  {\mathbb{P}(X_{n}=a_{n})}=\\
+  &=\mathbb{P}(X_{n-1}=a_{n-1}|X_{n}=a_{n}) \mathbb{P}(X_{n+1}=a_{n+1}|X_{n}=a_{n})
+\end{align*}
+Possiamo dunque usare  la quantità\footnote{Ho droppato un bel po' di notazione perché
+mi sono rotto di scrivere tutta quella roba, tanto è chiaro l'intento. Inoltre, formalmente
+dovrei anche dire che la il processo è \emph{omogeneo} (cioè \(P\) non dipende da
+\(n\)), però anche nell'articolo  se ne fregano. Infine la definizione in linea teorica
+dipende dallo step in mezzo, ma anche qui l'articolo glissa, e io mi comporterò in maniera
+simile.} 
+\[C_{pf} = \sum_{x,z}\left(P(x,z|y)-P(x|y)P(z|y)\right)\]
+detta \emph{past future correlation}, per discriminare i processi markoviani da
+quelli non-markoviani: infatti come mostrato sopra per un processo markoviano si ha
+\(C_{pf} = 0\). La cosa si estende facilmente anche a casi dove al
+posto che fissare un singolo step se ne  fissa più che uno, diciamo \(k\)
+\[C^{(k)}_{pf} = \sum_{x,z}\left(P(x,z|\bm{y})-P(x|\bm{y})P(z|\bm{y})\right),\]
+dove però ora \(\bm{y}\) è un vettore di dimensione \(k\).
+Per un processo markoviano \(C^{(k)}_{pf} \quad \forall k\).
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!85!black,title=Nota]
+	Nell'articolo sembra essere detto implicitamente che se \(C^{(k)}_{pf}\)
+	è nullo per ogni \(k\) allora il  processo è markoviano. Purtroppo non c'è traccia
+	di dimostrazione e a me sembra proprio una  di quelle cose che vorresti che siano vere
+	ma in realtà sono false. Ad esempio questo \url{https://math.stackexchange.com/questions/3147222/if-all-powers-of-two-random-variables-are-uncorrelated-are-they-independent}
+\end{tcolorbox}
+
+
+\section{Classi di divisibilità}
 Esponiamo innanzi tutto due definizioni non equivalenti della \emph{CP-divisibilità}.
 
 \subsection{iCP divisibilità}
@@ -202,8 +308,15 @@ Un processo è \emph{CP-divisibile per inversione} se, dati \(s \le  t\), la map
 \[\Phi_{t\colon s} = \Lambda_{t\colon0} \circ \Lambda^{-1}_{s\colon0}\]
 è completamente positiva.
 \end{defn}
-Ovviamente se un processo è iCP divisibile allora ogni mappa \(\Phi_{t\colon s}\) è ben definita
-a partire da \(\lambda_0\).
+Ovviamente se un processo è iCP divisibile allora ogni mappa \(\Phi_{t\colon s}\) è
+ben definita a partire da \(\lambda_0\).
+
+Questa è talvolta considerata la definizione di CP divisibilità, vedi ad esempio
+\cite{breuer2016colloquium}. Questo lo si fa perché ogni canale quantistico che
+è invertibile è scrivibile i una forma analoga a quella del Teorema~\ref{thm:GKSL},
+dove però gli \(\left\{\hat{L}_k\right\}\) e \(\hat{H}\) possono dipendere dal tempo.
+Ovviamente non è più vero che questo è un semi-gruppo dinamico in caso di dipendenza
+temporale.
 
 \subsection{oCP divisibilità}
 Supponiamo invece che di poter manipolare il sistema a qualsiasi tempo \(s\). In
@@ -243,7 +356,7 @@ In effetti questo non può succedere, come mostriamo nel Lemma~\ref{lem:condnsig
 	 \(\hat{\rho}_r\). Se così fosse la mappa \(\Lambda_{t\colon s}\) non potrebbe essere
 	 CP dato che per lo stesso input \(\hat{\rho}_s\) dovrebbe avere output diversi, e ciò
 	 è impossibile per le mappe CP.
-	 \todo{Ma non dovrebbe essere impossibile per le funzioni in genelare? Chiedi a Giovannetti}
+	 \todo{Ma non dovrebbe essere impossibile per le funzioni in genelare?}
 \end{lem}
 \begin{ach}
 	Non vale il viceversa, ovvero esistono processi \emph{conditionally non-signalling}, ma
@@ -339,9 +452,10 @@ stato
      \frac{1}{2} \left( \Id_\mathcal{S} + \bm{\sigma}_\mathcal{S} \cdot \bm{v} \right),\]
 allora il superoperatore da \(s\) a \(t\) è 
 \[\Lambda_{t\colon s} \left[\hat{\rho}^{(s)}\right] =
-     \frac{1}{2} \left( \Id_\mathcal{S} + \bm{\sigma}_\mathcal{S} \cdot \bm{w} \right),\]
-con \(\bm{w} = \frac{1}{3} (a-2c, b, 2a-c)\). Il processo è chiaramente conditional
-non-signalling, dato che non c'è informazione di \(\hat{\rho}^{(r)}\) nella mappa
+     \frac{1}{2} \left( \Id_\mathcal{S} + \bm{\sigma}_\mathcal{S} \cdot \bm{w} \right)
+     \quad \text{con} \quad \bm{w} = \frac{1}{3} (a-2c, b, 2a-c). \]
+ Il processo è chiaramente conditional non-signalling, dato che non c'è informazione
+ di \(\hat{\rho}^{(r)}\) nella mappa
 \(\Lambda_{s\colon r}\), ma 
 \[\Lambda_{t\colon r} \not= \Lambda_{t\colon s} \circ \Lambda_{s\colon r}.\]
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Attenzione!]
@@ -369,12 +483,17 @@ banale che non serviva scriverla.
 \paragraph{iCP + cond. non-sign.\(\implies\)oCP?} 
 Non riesco proprio a darmi una risposta...
 
+\paragraph{Come si dimostra l'equivalenza tra le due definizioni di markovianità quantistica?}
+Non sembra facilissima a prima vista. Basta l'equivalenza classica? Secondo me no, però
+insomma, si potrebbe glissare... 
+
 \printbibliography
 
 % Ecco un bell'orso
 \section{Extra: un orso}
 Non sarebbe una bella presentazione se non ci fosse almeno un easter-egg. Ho scelto
 di mettere un'orso abbigliato adeguatamente per l'occasione.
+~
 \begin{figure}[h!]
 	\centering
 	\resizebox{0.9\textwidth}{!}{\input{img/orso.tikz}}
