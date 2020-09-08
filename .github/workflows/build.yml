@@ -38,6 +38,9 @@ jobs:
       - name: Install dependencies for counting chars
         run: |
           sudo apt-get install texlive-extra-utils xpdf
+          ln -s ../texcount.pl
+      - name: Count chars
+        run: |
           long-abstract/counter
       - name: Move compiled files
         run: |
