@@ -8,7 +8,9 @@ jobs:
       - uses: actions/setup-python@v1
       - name: Count chars
         run: |
-          long-abstract/counter
+          cd long-abstract
+          ./counter
+          cd ..
       - name: Install quantum dependencies
         run: |
           python -m pip install --upgrade pip
@@ -26,6 +28,9 @@ jobs:
           cd presentazione
           ./create_handout
           cd ..
+      - name: Create link for contenuto TeX file
+        run: |
+          ln -s long-abstract/contenuto.tex
       - name: Compile LaTeX documents
         uses: xu-cheng/latex-action@v2
         with:
