@@ -6,12 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-python@v1
-      - name: Count chars
-        run: |
-          sudo apt-get install texlive-extra-utils xpdf
-          cd long-abstract
-          ./counter
-          cd ..
       - name: Install quantum dependencies
         run: |
           python -m pip install --upgrade pip
@@ -40,6 +34,11 @@ jobs:
             presentazione/presentazione.tex
             presentazione/presentazione-handout.tex
             long-abstract/long-abstract.tex
+            long-abstract/contenuto.tex
+      - name: Install dependencies for counting chars
+        run: |
+          sudo apt-get install texlive-extra-utils xpdf
+          long-abstract/counter
       - name: Move compiled files
         run: |
           mkdir outputs/
