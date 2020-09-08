@@ -34,7 +34,7 @@ jobs:
             presentazione/presentazione.tex
             presentazione/presentazione-handout.tex
             long-abstract/long-abstract.tex
-            long-abstract/contenuto.tex
+            long-abstract/only-content.tex
       - name: Install dependencies for counting chars
         run: |
           sudo apt-get install texlive-extra-utils xpdf

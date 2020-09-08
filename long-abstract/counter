@@ -3,5 +3,6 @@
 ./texcount.pl contenuto.tex | grep "Number of math inlines:"
 ./texcount.pl contenuto.tex | grep "Number of math displayed:"
 detex contenuto.tex | wc -m | bc
-pdftotext -enc UTF-8 contenuto.pdf
-wc -c < contenuto.txt | bc
+pdftotext -enc UTF-8 only-content.pdf
+echo "$(tr -d '\n' < only-content.txt)" > only-content.txt
+wc -c < only-content.txt | bc
