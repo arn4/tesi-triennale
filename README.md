@@ -7,4 +7,4 @@ Ecco un elenco dei documenti che ho prodotto:
 - **slides**: la presentazione che esporrò alla discussione. Due versioni:
   - [Handout](https://uz.sns.it/~arna/static_/ext_files/tesi-triennale/presentazione-handout.pdf): slides non animate
   - [Esposizione](https://uz.sns.it/~arna/static_/ext_files/tesi-triennale/presentazione.pdf): con le animazoni
-- **long abstract**: documento di presentazione del lavoro da consegnare alla commissione. `Ancora non fatto`
+- **long abstract**: documento di presentazione del lavoro da consegnare alla commissione. [Long Abstract](https://uz.sns.it/~arna/static_/ext_files/tesi-triennale/long-abstract.pdf)
