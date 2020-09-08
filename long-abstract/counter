@@ -1,0 +1,7 @@
+./texcount.pl contenuto.tex -char | grep "Letters in text:"
+./texcount.pl contenuto.tex | grep "Words in text:"
+./texcount.pl contenuto.tex | grep "Number of math inlines:"
+./texcount.pl contenuto.tex | grep "Number of math displayed:"
+detex contenuto.tex | wc -m | bc
+pdftotext -enc UTF-8 contenuto.pdf
+wc -c < contenuto.txt | bc

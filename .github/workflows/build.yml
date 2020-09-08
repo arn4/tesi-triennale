@@ -30,12 +30,14 @@ jobs:
             appunti/appunti.tex
             presentazione/presentazione.tex
             presentazione/presentazione-handout.tex
+            long-abstract/long-abstract.tex
       - name: Move compiled files
         run: |
           mkdir outputs/
           mv appunti.pdf outputs/appunti.pdf
           mv presentazione.pdf outputs/presentazione.pdf
           mv presentazione-handout.pdf outputs/presentazione-handout.pdf
+          mv long-abstract.pdf outputs/long-abstract.pdf
       - name: Save artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -65,3 +67,4 @@ jobs:
           sshpass -e scp -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no appunti.pdf $SSHUSER@$SSHSERVER:$SSHPATH
           sshpass -e scp -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no presentazione-handout.pdf $SSHUSER@$SSHSERVER:$SSHPATH
           sshpass -e scp -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no presentazione.pdf $SSHUSER@$SSHSERVER:$SSHPATH
+          sshpass -e scp -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no long-abstract.pdf $SSHUSER@$SSHSERVER:$SSHPATH
