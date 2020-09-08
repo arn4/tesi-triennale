@@ -8,7 +8,7 @@ jobs:
       - uses: actions/setup-python@v1
       - name: Count chars
         run: |
-          sudo apt-get install texlive-extra-utils
+          sudo apt-get install texlive-extra-utils xpdf
           cd long-abstract
           ./counter
           cd ..
