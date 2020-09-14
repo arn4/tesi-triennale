@@ -11,7 +11,7 @@
 
 \node[white] at (-0.9,2) {\LARGE \(\hat{\eta}_r\)};
 \node[white] at (0,-0.4) {\LARGE \(\hat{\rho}_r\)};
-\node at (3.6,1) {\LARGE \(\hat{\rho}_{t}\)};
+\node at (3.6,1) {\LARGE \(\hat{\rho}_{s}\)};
 
-\node[white] at (2.3,1.5) {\LARGE \(\hat{U}_{t\colon r}\)};
+\node[white] at (2.3,1.5) {\LARGE \(\hat{U}_{s\colon r}\)};
 \end{tikzpicture}

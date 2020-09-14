@@ -3,8 +3,8 @@
 \begin{quantikz}
 \lstick{\textcolor{pastelgreen}{\(\hat{\eta}_2\)}} &  \qw         &  \gate[swap] & &\qw \\
 %
-\lstick{\textcolor{pastelblue}{\(\hat{\rho}_r\)}} &  \gate[swap] \qw & \qw & \qw \rstick{\(\hat{\rho}_t\)} \\
+\lstick{\textcolor{pastelblue}{\(\hat{\rho}_r\)}} &  \gate[swap] \qw & \qw & \qw \rstick{\textcolor{pastelblue}{\(\hat{\rho}_t\)}} \\
 %
-\lstick{\(\hat{\eta}_1\)} & \qw          &       \qw       & \qw & \\
+\lstick{\textcolor{pastelgreen}{\(\hat{\eta}_1\)}} & \qw          &       \qw       & \qw & \\
 %
 \end{quantikz}	
