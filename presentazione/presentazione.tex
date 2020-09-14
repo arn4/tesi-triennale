@@ -57,7 +57,7 @@
     \pause
     \begin{columns}
     	\begin{column}{0.07\textwidth}
-    		\(\Phi\) è:
+    		\(\Phi\) è
     	\end{column}
     	\begin{column}{0.30\textwidth}
     		\begin{itemize}
@@ -92,10 +92,17 @@ Trattazione di \emph{Modi et al} \cite{CPdoesnotimply}: definizione \emph{operat
 \(\Lambda \): canale quantistico accessibile sperimentalmente.
 \pause
 \begin{block}{CP divisibilità per inversione [iCP]}
-	\begin{itemize}
-		\item[r] preparazione stato \(\hat{\rho}_r\)
-		\item[t] misurazione dello stato \(\hat{\rho}_t\)
-	\end{itemize}
+\begin{columns}
+	\begin{column}{0.5\textwidth}
+		\begin{itemize}
+			\item[r] preparazione stato \(\hat{\rho}_r\)
+			\item[t] misurazione dello stato \(\hat{\rho}_t\)
+		\end{itemize}
+	\end{column}
+	\begin{column}{0.3\textwidth}
+		\resizebox{\textwidth}{!}{\input{img/iCP.tikz}}
+	\end{column}	
+\end{columns}
  Canali accessibili sperimentalmente: \(\lambda_0 := \{\Lambda_{t\colon r}\}\). Il sistema è \emph{iCP} se:
  \begin{itemize}
     	\item tutte le mappe di \(\lambda_0\) sono invertibili;
@@ -111,12 +118,19 @@ Trattazione di \emph{Modi et al} \cite{CPdoesnotimply}: definizione \emph{operat
 \begin{frame}
 \frametitle{Divisibilità oCP}
 \begin{block}{CP divisibilità operativa [oCP]}
-	\begin{itemize}
-		\item[r] preparazione stato \(\hat{\rho}_r\)
-		\item[\(s_-\)] misurazione stato \(\hat{\rho}_{s_-}\)
-		\item[\(s_+\)] preparazione stato \(\hat{\rho}_{s_+}\)
-		\item[t] misurazione dello stato \(\hat{\rho}_t\)
-	\end{itemize}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item[r] preparazione stato \(\hat{\rho}_r\)
+				\item[\(s_-\)] misurazione stato \(\hat{\rho}_{s_-}\)
+				\item[\(s_+\)] preparazione stato \(\hat{\rho}_{s_+}\)
+				\item[t] misurazione dello stato \(\hat{\rho}_t\)
+			\end{itemize}
+	    \end{column}
+        \begin{column}{0.5\textwidth}
+        	\resizebox{\textwidth}{!}{\input{img/oCP.tikz}}
+        \end{column}	
+    \end{columns}
 	Canali accessibili sperimentalmente: \(\lambda := \{\Lambda_{s\colon r},\Lambda_{t\colon s}\}\). Il sistema è \emph{oCP} se:
 	\begin{itemize}
 		\item \(\forall r<s<t\)
