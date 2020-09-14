@@ -1,0 +1,10 @@
+% Figura per il controesempio: oCP =/=> markov
+
+\begin{quantikz}
+\lstick{\(\hat{\eta}_2\)} &  \qw          &  \gate[swap] & &\qw \\
+%
+\lstick{\(\hat{\rho}_r\)} &  \gate[swap]    \qw           & \qw & \qw \rstick{\(\hat{\rho}_t\)} \\
+%
+\lstick{\(\hat{\eta}_1\)} & \qw          &       \qw       & \qw & \\
+%
+\end{quantikz}	

@@ -8,6 +8,7 @@
 \usetikzlibrary{quantikz}
 \usepackage{tcolorbox} % fare i box colorati
 \usepackage{xcolor} % definire colori
+\usepackage{enumitem}
 
 % Math
 \usepackage{amsmath}
@@ -20,6 +21,15 @@
 
 % Physics
 \usepackage{braket}
+
+%TiKz
+\tikzset{
+	double arrow/.style args={#1 colored by #2 and #3}{
+		-stealth,line width=#1,#2, % first arrow
+		postaction={draw,-stealth,#3,line width=(#1)/2,
+			shorten <=(#1)/3,shorten >=2*(#1)/3}, % second arrow
+	}
+}
 
 % Fun
 \usepackage{tikzlings}

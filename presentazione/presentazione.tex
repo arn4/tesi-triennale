@@ -3,60 +3,202 @@
 
 \usepackage[utf8]{inputenc}
 
-\usetheme{PaloAlto}
+\usetheme{Madrid}
 \usecolortheme{seahorse} %seahorse, beaver
 
+\setitemize{label=\usebeamerfont*{itemize item}%
+	\usebeamercolor[fg]{itemize item}
+	\usebeamertemplate{itemize item}}
+
+\makeatletter
+\g@addto@macro\normalsize{%
+	\setlength\belowdisplayskip{-0pt}
+}
 
 %Information to be included in the title page:
-\title[Caratteriz. di dinamiche markoviane in regime quantistico]
+\title[Caratterizzazione MD in regime quantistico]
       {Caratterizzazione di dinamiche markoviane in regime quantistico}
 %\subtitle[it]{\texttt{Inserisci sottotitolo}}
 \author[Luca Arnaboldi]{Luca Arnaboldi \\[1ex]
 	{\small Relatore: Vittorio Giovannetti}}      
-\institute[UniPi]{\includegraphics[height=1.45cm]{img/unipi.png}}
+\institute[]{\includegraphics[height=2.60cm]{img/unipi.png}}
 \date[17-09-2020]{17 settembre 2020}
-\logo{\includegraphics[height=1.45cm]{img/unipi-noscritta.png}}
+%\logo{\includegraphics[height=1.45cm]{img/unipi-noscritta.png}}
 
 \begin{document}
 	
-\frame{\titlepage}
+\frame[plain]{\titlepage}
 
 % Slide 1
 \begin{frame}
-	\frametitle[Slide 1]{Slide 1}
-	Ora espongo un teomrema d'esempio \pause
-	\begin{block}{Teorema}
-		Uomo! Guarda che \(1+1 \not= 6\)
-	\end{block}
+	\frametitle{Open Quantum Systems \& Markovianità}
+	\begin{columns}
+		\begin{column}{0.73\textwidth}
+			Sistema \(S\) che interagisce con l'ambiente esterno \(E\).
+			\begin{block}{}
+				\(S+E\) è un chiuso \(\implies\) evoluzione~unitaria~\(\hat{U}_{SE}\)
+			\end{block}
+		    \vspace*{-\baselineskip}\setlength\belowdisplayshortskip{0pt}
+			\[\Phi_{t\colon s}\left[\hat{\rho}_s\right]=\hat{\rho}_t = \Tr_E\left(\hat{U}_{SE}(t,s)(\hat{\rho}_s\otimes\eta_s)\hat{U}^\dag_{SE}(t,s)\right)\]
+		\end{column}
+	    \begin{column}{0.22\textwidth}
+	    	\begin{figure}
+	    		\resizebox{\textwidth}{!}{\input{img/open-quantum.tikz}}
+	    	\end{figure}
+	    \end{column}
+	\end{columns}
+    \pause
+    \begin{block}{Markovianità classica}
+    	\(\mathbb{P}\left(X_{n+1} = a_{n+1} | X_{n} = a_{n}, \dots, X_0 = a_0\right) =
+    	\mathbb{P}\left(X_{n+1} = a_{n+1} | X_{n} = a_{n}\right)
+    	%\quad \forall n\in \mathbb{N}.
+    	\)
+    \end{block}
+    \pause
+    \begin{columns}
+    	\begin{column}{0.07\textwidth}
+    		\(\Phi\) è:
+    	\end{column}
+    	\begin{column}{0.30\textwidth}
+    		\begin{itemize}
+    			\item[L] lineare
+    			\item[CP] completamente positiva
+    			\item[T] preserva la traccia
+    		\end{itemize}
+    	\end{column}
+    	\pause
+    	\begin{column}{0.56\textwidth}
+    		\begin{alertblock}{Markovianità quantistica?}
+    			Problema aperto.
+    			\textbf{Non} è la CP~divisibilità
+    			\vspace*{-\baselineskip}
+    			\begin{equation*}
+    				\Phi_{t\colon r} = \Phi_{t\colon s} \circ \Phi_{s\colon r}
+    		    \end{equation*}
+    	        con \(\Phi_{x\colon y}\) CP \(\forall x,y\)
+    	    \end{alertblock}
+    	\end{column}
+    \end{columns}
+
+
+    
 \end{frame}
 
 % Slide 2
 \begin{frame}
-\frametitle[Slide 2]{Slide 2}
-Il mio libro prefrito è \cite{nielsen2010quantum}.
+\frametitle{Divisibilità iCP}
+Trattazione di \emph{Modi et al} \cite{CPdoesnotimply}: definizione \emph{operative} della divisibilità e rapporti tra esse.
+
+\(\Lambda \): canale quantistico accessibile sperimentalmente.
+\pause
+\begin{block}{CP divisibilità per inversione [iCP]}
+	\begin{itemize}
+		\item[r] preparazione stato \(\hat{\rho}_r\)
+		\item[t] misurazione dello stato \(\hat{\rho}_t\)
+	\end{itemize}
+ Canali accessibili sperimentalmente: \(\lambda_0 := \{\Lambda_{t\colon r}\}\). Il sistema è \emph{iCP} se:
+ \begin{itemize}
+    	\item tutte le mappe di \(\lambda_0\) sono invertibili;
+    	\item \(\forall r<s<t\)
+ 	      \[\Phi_{t\colon s} = \Lambda_{t\colon r} \circ \Lambda^{-1}_{s\colon r}\]
+ 	      è una mappa completamente positiva.
+ \end{itemize}
+\end{block}
+
 \end{frame}
 
 % Slide 3
 \begin{frame}
-\frametitle[Slide 3]{Slide 3}
-Il mio articolo preferito invece è \cite{CPdoesnotimply}
+\frametitle{Divisibilità oCP}
+\begin{block}{CP divisibilità operativa [oCP]}
+	\begin{itemize}
+		\item[r] preparazione stato \(\hat{\rho}_r\)
+		\item[\(s_-\)] misurazione stato \(\hat{\rho}_{s_-}\)
+		\item[\(s_+\)] preparazione stato \(\hat{\rho}_{s_+}\)
+		\item[t] misurazione dello stato \(\hat{\rho}_t\)
+	\end{itemize}
+	Canali accessibili sperimentalmente: \(\lambda := \{\Lambda_{s\colon r},\Lambda_{t\colon s}\}\). Il sistema è \emph{oCP} se:
+	\begin{itemize}
+		\item \(\forall r<s<t\)
+		\[\Lambda_{t\colon r} = \Lambda_{t\colon s} \circ \Lambda_{s\colon r}\]
+		è una mappa completamente positiva.
+	\end{itemize}
+\end{block}
+\pause
+\begin{exampleblock}{Conditional non-signalling}
+	L'oCP divisibilità richiede implicitamente che \(\Lambda_{t\colon s}\) non dipenda da \(\hat{\rho}_r\).
+\end{exampleblock}
 \end{frame}
 
 % Slide 4
-\section{Slides 4}
 \begin{frame}
-\frametitle{Slide 4}
-\begin{figure}
-\input{img/cns-oCP.quantikz}
-\end{figure}
-\begin{equation}
-\ket{\psi} = \frac{\ket{0}+\ket{1}}{\sqrt{2}}
-\end{equation}
+\frametitle{Relazioni tra classi di divisibilità}
+\begin{columns}
+	\begin{column}{0.68\textwidth}
+		iCP \emph{non} è equivalente a oCP:
+		\begin{itemize}
+			\item \structure{\(\lambda_0\) non invertibile:} iCP non è ben definito.
+			\item \structure{\(\lambda_0\) invertibile:} oCP\(\implies\)iCP, ma il viceversa non è vero.
+		\end{itemize}
+	\pause
+	\emph{Conditional non-signalling} è necessario, ma non sufficiente alla oCP divisibilità.
+	\end{column}
+    \pause
+	\begin{column}{0.30\textwidth}
+		\begin{figure}
+			\resizebox{\textwidth}{!}{\input{img/classi-divisibilita.tikz}}
+		\end{figure}
+	\end{column}
+\end{columns}
+\begin{columns}
+	\begin{column}{0.3\textwidth}
+		\structure{Markov  \(\not=\) oCP}\\
+		oCP non  è comunque sufficiente ad escludere tutti gli effetti di memoria.
+	\end{column}
+    \pause
+	\begin{column}{0.3\textwidth}
+		\begin{figure}
+			\resizebox{\textwidth}{!}{\input{img/ocp-no-markov.quantikz}}
+		\end{figure}
+	    \[\hat{U}_{s:r} = \hat{\mathcal{S}}_{S E_1},\, \hat{U}_{t:s} = \hat{\mathcal{S}}_{S E_2}\]
+	\end{column}
+    \pause
+    \begin{column}{0.4\textwidth}
+    	\[\Lambda_{s:r}\left[\hat{\rho}\right] = \hat{\eta}_1 \Tr{\hat{\rho}},\]
+    	\[\Lambda_{t:s}\left[\hat{\rho}\right] = \hat{\eta}_2 \Tr{\hat{\rho}}  \]
+    	\begin{itemize}[label={\checkmark}]
+    		\item cond. non-sign.
+    		\item oCP: \(\Lambda_{t\colon r} = \Lambda_{t\colon s} \circ \Lambda_{s\colon r}\)
+    	\end{itemize}
+	    \begin{itemize}[label={\(\times\)}]
+	    	\item Markov: \(\hat{\rho}_{s_+t} \not= \hat{\rho}_{s_+} \otimes \hat{\rho}_{t}\)
+	    \end{itemize}
+    \end{column}
+\end{columns}
 \end{frame}
 
 % Slide 5
 \begin{frame}
-\frametitle[Slide 5]{Slide 5}
+\frametitle{Caratterizzazione della memoria oCP \& sviluppi ulteriori}
+\begin{itemize}
+\item L'oCP divisibilità rappresenta la \emph{markovianità in media}. 
+
+\item La divisibilità non producono il corretto limite classico, quindi non hanno speranza di caratterizzare completamente la markovianità.
+\begin{align*}
+\text{iCP }&\left\{\mathbb{P}\left(X_{t},X_0\right)\right\}^n_{t\ge 1} \\
+\text{oCP }&\left\{\mathbb{P}\left(X_{s},X_r\right)\right\}^n_{s>r \ge 0} \\
+\text{markov }&\left\{\mathbb{P}\left(X_{n},\dots,X_0\right)\right\}
+\end{align*}
+
+\item \structure{Formalismo \emph{process tensor}} \cite{markovcondition}: generalizzazione della distribuzione di  probabilità.
+\begin{itemize}
+	\item markovianità quantistica tramite \emph{causal break}
+	\item caratterizzazione dei processi oCP
+\end{itemize}
+
+\item \structure{\emph{Past-future correlation}} \cite{budini2018quantum}: definizione alternativa di markovianità quantistica, basata su una definizione classica alternativa
+\[\text{markoviano}\implies C_{pf} := \sum \mathbb{P}(x,z|y)-\mathbb{P}(z|y)\mathbb{P}(x|y)=0\]
+\end{itemize}
 \end{frame}
 
 % Slide Finale
@@ -67,7 +209,7 @@ Il mio articolo preferito invece è \cite{CPdoesnotimply}
 \vfill
 \textbf{\structure{Bibliografia}}
 \printbibliography
-\centerline{\resizebox{0.5cm}{!}{\input{img/orso.tikz}}}
+\centerline{\resizebox{2.3cm}{!}{\input{img/orso.tikz}}}
 
 \end{frame}
 
