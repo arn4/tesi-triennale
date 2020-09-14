@@ -1,0 +1,27 @@
+\begin{tikzpicture}
+\draw[rounded corners, dashed] (0.75,0.75) rectangle (4.75,4.77);
+\filldraw[rounded corners, fill=pastelgreen] (1,1) rectangle (4.5,2);
+\draw[double arrow=3pt colored by black and pastelred]
+    (2.5,2.05) arc(210:150:.25) arc(-30:30:.25) arc(210:150:.25) arc(-30:30:.25)-- ++(90:.5);
+\draw[double arrow=3pt colored by black and pastelred]
+    (3,3.50) arc(150:210:.25) arc(30:-30:.25) arc(150:210:.25) arc(30:-30:.25)-- ++(270:.5);
+\filldraw[rounded corners, fill=pastelblue] (2.25,3.52) rectangle (3.25,4.52);
+
+\node[white] at (2.75,4.02) {\(S\)};
+\node[white] at (2.75,1.5) {Ambiente \(E\)};
+%    \filldraw[rounded corners, fill=pastelyellow] (0,0) rectangle (6,6);
+%    \filldraw[fill=pastelgreen] (3,3) circle (1.3cm);
+%    %E
+%    \draw[double arrow=3pt colored by black and pastelred]
+%    (4.4,3) arc(120:60:.25) arc(-120:-60:.25)arc(120:60:.25) arc(-120:-60:.25) -- ++(0:.5);
+%    %N
+%    \draw[double arrow=3pt colored by black and pastelred]
+%    (3,4.4) arc(210:150:.25) arc(-30:30:.25) arc(210:150:.25) arc(-30:30:.25)-- ++(90:.5);
+%    %W
+%    \draw[double arrow=3pt colored by black and pastelred]
+%    (1.6,3) arc(60:120:.25) arc(-60:-120:.25)arc(60:120:.25) arc(-60:-120:.25) -- ++(180:.5);
+%    %S
+%    \draw[double arrow=3pt colored by black and pastelred]
+%    (3,1.6) arc(150:210:.25) arc(30:-30:.25) arc(150:210:.25) arc(30:-30:.25)-- ++(270:.5);
+    
+\end{tikzpicture}
