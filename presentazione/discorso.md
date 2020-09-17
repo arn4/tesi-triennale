@@ -20,4 +20,16 @@ Vediamo ora come si rapportano tra loro le varie classi di divisibilità. Innanz
 
 ```oCP =/= markov```
 Abbiamo visto che oCP è più condizione di stringente di iCP, ma purtroppo non è comunque sufficiente a eliminare tutti gli effetti di memoria. Vediamo esplicitamente un esempio di processo oCP che ha memoria. ```foto circuito```
-Consideriamo un sistema costituito da un singolo qubit, che interagisce con un ambiente costituito da 2 qubit. Indichiamo con eta_1 ed eta_2 lo stato iniziale dell'ambiente, eventualmente entagled. rho_r invece è lo stato
+Consideriamo un sistema costituito da un singolo qubit, che interagisce con un ambiente costituito da 2 qubit. Indichiamo con eta_1 ed eta_2 lo stato iniziale dell'ambiente, eventualmente entagled. rho_r invece è lo stato iniziale del sistema. Supponiamo che l'evoluzione temporale avvenga in due passaggi: prima uno SWAP tra S e il primo qubit dell'ambiente, e poi uno SWAP tra S il secondo qubit dell'ambiente. Fissiamo r il tempo iniziale, s un tempo intermedio tra i due swap e t un tempo alla fine dell'evoluzione. ```canali``` I canali quantistici del sistema S sono banali, infatti mandano tutte gli stati in uno soltanto. Questo rende ovvio il conditional non signalling, e ovviamente il sistema non può essere iCP. È anche vero che il sistema è oCP, dato che la composizione dei canali parziali è quella globale, tuttavia il sistema non è markoviano. Se infatti conserviamo lo stato estratto al tempo s_-, per poi confrontarlo con lo stato del tempo t, in generale no si troverà uno stato fattorizzato, ma bensì uno stato entanglato allo stesso modo dello stato iniziale dell'ambiente.
+
+## Slide 5
+```markov media``` L'oCP divisibilità corrisponde a quella che si può chiamare markovianità  in media, cioè lo stato misurato dipende solo dall'ultima preparazione a patto di mediare su tutte le misure precedenti. La markovianità invece richiederebbe che questa cosa accada per ogni possibile catena di  misurazioni e non solo per la media.
+
+```analogo classico``` Potevamo accorgerci a priori che la divisibilità non aveva speranza di essere un buon discrimine per la markovianità, dato che nel limite classico non producono una  condizione analoga alla markovianità classica. Infatti per la divisibilità abbiamo condizioni solamente su alcune marginali, vediamo in particolare  quali sono per per iCP e  oCP rispettivamente, mentre la markovianità (se  ci ricordiamo la definizione della prima slide) è una condizione su tutta la distribuzione.
+
+Vediamo  infine un paio di possibili sviluppi che si possono fare a  partire da quello che abbiamo detto.
+```tensor process```
+In un altro articolo l'autore Modi definisce e sviluppa il formalismo dei tensor process, che sono una sorta di generalizzazione delle distribuzioni di probabilità classiche. Attraverso questo propone una definizione di markovianità per un open quantum system. Inoltre, utilizzando sempre lo stesso formalismo, si riesce a dare una caratterizzazione completa degli effetti di memoria presenti in un processo oCP.
+
+```past-future```
+ In un altro articolo l'autore Budini propone una definizione alternativa di markovianità quantistica, basata sua definizione equivalente di markovianità classica. I processi markoviani sono infatti caratterizzati dall'indipendenza tra eventi passati e futuri condizionati ad uno step intermedio. Nell'articolo si mostra inoltre come non tutti i processi che ammettono un'evoluzione GKSL sono markoviani, al contrario di quello che spesso viene riportato in letteratura.
