@@ -13,12 +13,15 @@
 }
 \title{Caratterizzazione di dinamiche markoviane in regime quantistico \\[1ex]
 	   \large{Note e riflessioni}}
-\author{Luca Arnaboldi}
+\author{Luca Arnaboldi \\ 
+	
+	\includegraphics[width=0.2\textwidth]{img/unipi-noscritta.png}}
+\date{17 settembre 2020}
 
 \begin{document}
 \maketitle
 \tableofcontents
-\vspace{6pt}
+\clearpage
 Il setting è quello degli \emph{open quantum systems}. In particolare vogliamo studiare
 la markovianità dell'evoluzione temporale, spesso chiamata \emph{divisibilità}, anche se
 le due definizioni non coincidono. Lo scopo della tesi è indagare le differenze tra questi
@@ -312,6 +315,11 @@ Un processo è \emph{CP-divisibile per inversione} se, dati \(s \le  t\), la map
 \[\Phi_{t\colon s} = \Lambda_{t\colon0} \circ \Lambda^{-1}_{s\colon0}\]
 è completamente positiva.
 \end{defn}
+\begin{figure}
+	\centering
+	\resizebox{0.4\textwidth}{!}{\input{img/iCP.tikz}}
+	\caption{schema rappresentante un processo iCP.}
+\end{figure}
 Ovviamente se un processo è iCP divisibile allora ogni mappa \(\Phi_{t\colon s}\) è
 ben definita a partire da \(\lambda_0\).
 
@@ -337,6 +345,11 @@ relazione
 \end{equation}
 dove le mappe appartengono tutte all'insieme \(\lambda\).
 \end{defn}
+\begin{figure}
+	\centering
+	\resizebox{0.9\textwidth}{!}{\input{img/oCP.tikz}}
+	\caption{schema rappresentante un processo oCP.}
+\end{figure}
 Le equazioni \eqref{eq:CPdiv} e \eqref{eq:OCPdiv} sono formalmente identiche, con la
 differenza che nella seconda è chiaro come verificarla operativamente.
 
@@ -483,7 +496,14 @@ Vedi direttamente \cite{CPdoesnotimply}.
 
 \subsection[oCP non è equivalente a Markoviano]
            {oCP \(\centernot=\) Markov} \label{cont:ocpmar}
-Vedi direttamente \cite{CPdoesnotimply}.
+Vedi direttamente \cite{CPdoesnotimply}. Per una rappresentazione minimale del
+circuito che realizza il controesempio si veda la Figura~\ref{fig:oCPMarkov}.
+\begin{figure}
+	\centering
+	\resizebox{0.6\textwidth}{!}{\input{img/ocp-no-markov.quantikz}}
+	\caption{controesmpio oCP diverso da Markov.}
+	\label{fig:oCPMarkov}
+\end{figure}
 
 \section{Domande senza risposta}
 Qui metto tutte le domande che mi sono venute leggendo gli articoli, ma la cui risposta
@@ -499,6 +519,7 @@ insomma, si potrebbe glissare...
 \printbibliography
 
 % Ecco un bell'orso
+\clearpage
 \section{Extra: un orso}
 Non sarebbe una bella presentazione se non ci fosse almeno un easter-egg. Ho scelto
 di mettere un'orso abbigliato adeguatamente per l'occasione.
@@ -506,11 +527,6 @@ di mettere un'orso abbigliato adeguatamente per l'occasione.
 \begin{figure}[h!]
 	\centering
 	\resizebox{0.9\textwidth}{!}{\input{img/orso.tikz}}
-\end{figure}
-	
-\begin{figure}[h!]
-	\centering
-	\resizebox{0.9\textwidth}{!}{\input{img/oCP.tikz}}
 \end{figure}
 
 \end{document}
