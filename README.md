@@ -1,4 +1,6 @@
 # Tesi di laurea triennale: *Caratterizzazione di dinamiche markoviane in regime quantistico*
+![Build LaTeX documents](https://github.com/arn4/tesi-triennale/workflows/Build%20LaTeX%20documents/badge.svg)
+
 Raccolgo in questa repository tutto il lavoro che ho prodotto per la mia tesi di laurea triennale.
 
 Ecco un elenco dei documenti che ho prodotto:
